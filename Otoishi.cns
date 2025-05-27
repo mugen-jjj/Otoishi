@@ -1490,13 +1490,13 @@ sprpriority = 1
 [State 200, 変数]
 type = VarSet
 trigger1 = AnimElemTime(1) = 0
-var(4)= 0
+var(4) = 0
 
 [State 200, 変数]
 type = VarSet
 triggerall = movecontact
 trigger1 = AnimElemTime(2) >= 0
-var(4)= 1
+var(4) = 1
 ignorehitpause = 1
 
 [State 200, 物理的なキャラの幅]
@@ -1585,6 +1585,7 @@ trigger1 = facing != root,facing
 type = bindtoroot
 trigger1 = 1
 pos = 30,0
+facing = 1
 
 [State 0, anim]
 type = changeanim
@@ -1671,13 +1672,13 @@ sprpriority = 1
 [State 200, 変数]
 type = VarSet
 trigger1 = AnimElemTime(1) = 0
-var(4)= 0
+var(4) = 0
 
 [State 200, 変数]
 type = VarSet
 triggerall = movecontact
 trigger1 = AnimElemTime(3) >= 0
-var(4)= 1
+var(4) = 1
 ignorehitpause = 1
 
 [State 200, 物理的なキャラの幅]
@@ -1761,6 +1762,7 @@ trigger1 = facing != root,facing
 type = bindtoroot
 trigger1 = 1
 pos = 30,0
+facing = 1
 
 [State 0, anim]
 type = changeanim
@@ -1847,13 +1849,13 @@ sprpriority = 1
 [State 200, 変数]
 type = VarSet
 trigger1 = AnimElemTime(1) = 0
-var(4)= 0
+var(4) = 0
 
 [State 200, 変数]
 type = VarSet
 triggerall = movecontact
 trigger1 = AnimElemTime(3) >= 0
-var(4)= 1
+var(4) = 1
 ignorehitpause = 1
 
 [State 200, 物理的なキャラの幅]
@@ -2032,6 +2034,7 @@ trigger1 = facing != root,facing
 type = bindtoroot
 trigger1 = 1
 pos = 30,0
+facing = 1
 
 [State 0, anim]
 type = changeanim
@@ -2147,7 +2150,7 @@ var(58) = -5
 [State 200, 変数]
 type = VarSet
 trigger1 = AnimElemTime(1) = 0
-var(4)= 0
+var(4) = 0
 
 [State 200, 物理的なキャラの幅]
 type = Width
@@ -2369,13 +2372,13 @@ sprpriority = 2
 [State 200, 変数]
 type = VarSet
 trigger1 = AnimElemTime(1) = 0
-var(4)= 0
+var(4) = 0
 
 [State 200, 変数]
 type = VarSet
 triggerall = movecontact
 trigger1 = AnimElemTime(2) >= 0
-var(4)= 1
+var(4) = 1
 ignorehitpause = 1
 
 [State 200, 物理的なキャラの幅]
@@ -2444,13 +2447,13 @@ sprpriority = 2
 [State 200, 変数]
 type = VarSet
 trigger1 = AnimElemTime(1) = 0
-var(4)= 0
+var(4) = 0
 
 [State 200, 変数]
 type = VarSet
 triggerall = movecontact
 trigger1 = AnimElemTime(3) >= 1
-var(4)= 1
+var(4) = 1
 ignorehitpause = 1
 
 [State 200, 物理的なキャラの幅]
@@ -2593,6 +2596,7 @@ trigger1 = facing != root,facing
 type = bindtoroot
 trigger1 = 1
 pos = 30,0
+facing = 1
 
 [State 200, 音を鳴らす]
 type = PlaySnd
@@ -2689,13 +2693,13 @@ sprpriority = 2
 [State 200, 変数]
 type = VarSet
 trigger1 = AnimElemTime(1) = 0
-var(4)= 0
+var(4) = 0
 
 [State 200, 変数]
 type = VarSet
 triggerall = movecontact
 trigger1 = AnimElemTime(2) >= 0
-var(4)= 1
+var(4) = 1
 ignorehitpause = 1
 
 [State 200, 物理的なキャラの幅]
@@ -2779,13 +2783,13 @@ sprpriority = 2
 [State 200, 変数]
 type = VarSet
 trigger1 = AnimElemTime(1) = 0
-var(4)= 0
+var(4) = 0
 
 [State 200, 変数]
 type = VarSet
 triggerall = movecontact
 trigger1 = AnimElemTime(2) >= 0
-var(4)= 1
+var(4) = 1
 ignorehitpause = 1
 
 [State 600, 変数]
@@ -2913,13 +2917,13 @@ y = IfElse(var(8) > 0, 0.6, Const(movement.yaccel))
 [State 200, 変数]
 type = VarSet
 trigger1 = AnimElemTime(1) = 0
-var(4)= 0
+var(4) = 0
 
 [State 200, 変数]
 type = VarSet
 triggerall = movecontact
 trigger1 = AnimElemTime(2) >= 0
-var(4)= 1
+var(4) = 1
 ignorehitpause = 1
 
 [State 600, 変数]
@@ -3053,13 +3057,13 @@ y = IfElse(var(8) > 0, 0.6, Const(movement.yaccel))
 [State 200, 変数]
 type = VarSet
 trigger1 = AnimElemTime(1) = 0
-var(4)= 0
+var(4) = 0
 
 [State 200, 変数]
 type = VarSet
 triggerall = movecontact
 trigger1 = AnimElemTime(2) >= 0
-var(4)= 1
+var(4) = 1
 ignorehitpause = 1
 
 [State 600, 変数]
@@ -3540,6 +3544,16 @@ trigger1 = time = 0
 time = 30
 movetime = 30
 
+[State 2200, vel]
+type = Velset
+trigger1 = AnimElemTime(2) = 0
+x = 9
+
+[State 2200, vel]
+type = VelMul
+trigger1 = AnimElemTime(2) >= 0
+x = .8
+
 [State 200, 音を鳴らす]
 type = nothitby
 trigger1 = time <= 35
@@ -3592,8 +3606,7 @@ getpower = 0,0
 givepower = 0,0
 fall = 1
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
-fall.recover = 1
-fall.recovertime = 18
+fall.recover = 0
 down.bounce = 0
 kill = 0
 
@@ -3634,9 +3647,8 @@ type = DestroySelf
 trigger1 = time = 30
 
 ;===========================================================================
-; 投げ技
+; throw
 ;===========================================================================
-;カンフースルー：掴み
 [Statedef 800]
 type    = S
 movetype= A
@@ -3666,7 +3678,8 @@ value = 0
 
 [State 200, 音を鳴らす]
 type = PlaySnd
-trigger1 = !time
+trigger1 = animelemtime(2) = 0 
+trigger1 = random%2 = 0
 value = 800,0+(random%2)
 channel = 0
 
@@ -3679,7 +3692,7 @@ attr = S, NT
 hitflag = M-
 priority = 1, Miss
 sparkno = -1
-p1facing = ifelse((var(3)=-1),-1,1)
+p1facing = 1
 p2facing = 1
 p1stateno = 810
 p2stateno = 820
@@ -3697,39 +3710,55 @@ ctrl = 1
 ;成功（投げる）
 [Statedef 810]
 type    = S
-movetype= A
+movetype = A
 physics = N
 anim = 810
-poweradd = 40
+poweradd = 0
 sprpriority = 1
 
-[State 810, 音を鳴らす];放り投げ用
+[State 810, se]
 type = PlaySnd
 trigger1 = !time
 value = 1,0
 
-[State 810, 音を鳴らす];掴み用
+[State 0, end]
+type = changestate
+trigger1 = time = [0, 4]
+trigger1 = target,command = "a"
+value = 830
+
+[State 810, f]
+type = turn
+trigger1 = var(3) = -1
+trigger1 = time = 5
+[State 810, f]
+type = TargetFacing
+trigger1 = var(3) = -1
+trigger1 = time = 6
+value = -1
+
+[State 810, 音を鳴らす]
 type = PlaySnd
 trigger1 = time = 5
 value = 810,0+(random%2)
 channel = 0
 
-[State 810, 音を鳴らす];掴み用
+[State 810, 音を鳴らす]
 type = PlaySnd
 trigger1 = time = 25
 value = 2,5
 channel = 3
 
-[State 810, 音を鳴らす];掴み用
+[State 810, 音を鳴らす]
 type = PlaySnd
 trigger1 = time = 35
 value = 850,0
 
-[State 810, 音を鳴らす];掴み用
+[State 810, 音を鳴らす]
 type = PlaySnd
 trigger1 = time = 65
 value = 12,0
-[State 810, 音を鳴らす];掴み用
+[State 810, 音を鳴らす]
 type = PlaySnd
 trigger1 = time = 70
 value = 2,12
@@ -3779,7 +3808,7 @@ bindtime = 1
 removeongethit = 1
 scale = 1.5,1.5
 
-[State 810, 音を鳴らす];掴み用
+[State 810, 音を鳴らす]
 type = stopsnd
 trigger1 = time = 65
 channel = 3
@@ -3893,6 +3922,10 @@ anim = 850
 velset = 0,0
 sprpriority = 1
 
+[State 0, turn]
+type = turn
+trigger1 = facing != root,facing
+
 [State 0, btr]
 type = nothitby
 trigger1 = 1
@@ -3908,6 +3941,7 @@ ignorehitpause = 1
 type = bindtoroot
 trigger1 = 1
 pos = 30,0
+facing = 1
 
 [State 810, ステート変更]
 type = changeanim
@@ -4097,8 +4131,151 @@ trigger1 = Vel Y > 0
 trigger1 = Pos Y >= 0
 value = 5100
 
+;---------------------------------------------------------------------------
+;投げぬけ（自分）
+[Statedef 830]
+type = S
+movetype = I
+physics = N
+anim = 830
+velset = 0,0
+
+[State 810, snd]
+type = PlaySnd
+trigger1 = !time
+value = 830, 5
+
+[State 810, snd]
+type = PlaySnd
+trigger1 = time = 10
+value = 700, 20 + random%2
+channel = 0
+
+[State 0, explod]
+type = explod
+trigger1 = time = 0
+anim = 6330
+id = 6330
+pos = 45,-90
+postype = p1
+sprpriority = 1
+ownpal = 1
+shadow = 0,0,0
+scale = .5,.5
+pausemovetime = 999999
+supermovetime = 999999
+[State 0, explod]
+type = explod
+trigger1 = time = 0
+anim = 6330
+id = 6330
+pos = 45,-90
+postype = p1
+facing = -1
+sprpriority = 1
+ownpal = 1
+shadow = 0,0,0
+scale = .5,.5
+pausemovetime = 999999
+supermovetime = 999999
+
+[State 0, target]
+type = targetbind
+triggerall = numtarget
+trigger1 = !time
+pos = 60,0
+
+[State 0, target]
+type = targetstate
+triggerall = numtarget
+trigger1 = !time
+value = 840
+
+[State 0, target]
+type = velset
+trigger1 = time = 20
+x = -10
+
+[State 0, target]
+type = velmul
+trigger1 = time >= 20
+x = .85
+
+[State 0, nhb]
+type = nothitby
+trigger1 = 1
+value = SCA
+
+[State 0, nhb]
+type = posadd
+trigger1 = !animtime
+x = 25
+
+[State 0, nhb]
+type = changestate
+trigger1 = time = 48
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;投げ抜け（相手）
+[Statedef 840]
+type = S
+movetype = I
+physics = N
+velset = 0,0
+
+[State 0, pos]
+type = posset
+trigger1 = !time
+y = 0
+
+[State 0, anim]
+type = changeanim
+trigger1 = time < 20
+trigger1 = selfanimexist(5945)
+value = 5945
+
+[State 0, anim]
+type = changeanim
+trigger1 = time < 20
+trigger1 = !selfanimexist(5945)
+value = 130
+
+[State 0, anim]
+type = changeanim
+trigger1 = anim = 130
+trigger1 = time = 20
+value = 150
+
+[State 0, nhb]
+type = nothitby
+trigger1 = 1
+value = SCA
+
+[State 0, target]
+type = velset
+trigger1 = time = 20
+x = -7
+
+[State 0, target]
+type = velmul
+trigger1 = time >= 20
+x = .85
+
+[State 0, nhb]
+type = nothitby
+trigger1 = 1
+value = SCA
+
+[State 0, nhb]
+type = selfstate
+trigger1 = time = 48
+value = 0
+ctrl = 1
+
 ;===========================================================================
-;相手
+;kuzureoti
 [Statedef 5950]
 type    = A
 movetype= H
@@ -4294,6 +4471,7 @@ type = bindtoroot
 trigger1 = prevstateno = 10000
 trigger1 = time <= 1
 pos = 10,0
+facing = 1
 
 [State 0, snd]
 type = playsnd
@@ -5013,6 +5191,7 @@ value = 1150
 type = bindtoroot
 trigger1 = 1
 pos = 30,0
+facing = 1
 
 [State 0, end]
 type = varset
@@ -5659,6 +5838,7 @@ type = bindtoroot
 triggerall = anim = 1210
 trigger1 = animelemtime(2) < 0
 pos = -10,-120
+facing = 1
 
 [State 0, hitvel]
 type = velset
@@ -6140,6 +6320,7 @@ type = bindtoroot
 trigger1 = prevstateno = 10000
 trigger1 = time <= 1
 pos = 15, -15
+facing = 1
 
 [State 0, hitvel]
 type = changeanim
@@ -7147,6 +7328,7 @@ value = 2050 + (var(7) = 1) * 5
 type = bindtoroot
 trigger1 = time <= 1
 pos = 15,0
+facing = 1
 
 [State 0, snd]
 type = playsnd
@@ -7708,6 +7890,7 @@ value = 2150+(var(7)>0)
 type = bindtoroot
 trigger1 = animelemtime(9) < 0
 pos = 45,0
+facing = 1
 
 [State 2601, Vel]
 type = playerpush
@@ -8216,7 +8399,7 @@ ignorehitpause = 1
 [State 200, v]
 type = VarSet
 trigger1 = Time = 0
-var(4)= 0
+var(4) = 0
 
 [State 200, v]
 type = VarSet
@@ -8242,6 +8425,7 @@ value = 2250+(var(7)>0)
 type = bindtoroot
 trigger1 = animelemtime(2) < 0
 pos = 0,0
+facing = 1
 
 [State 2601, Vel]
 type = playerpush
@@ -8709,7 +8893,7 @@ type = width
 trigger1 = helper(10000),stateno = [3060,3061]
 edge = 120,-120
 
-[State 810, 音を鳴らす];掴み用
+[State 810, 音を鳴らす]
 type = nothitby
 trigger1 = time <= 72
 trigger2 = helper(10000),stateno = [3060,3062]
@@ -8874,9 +9058,9 @@ value = 12,0
 type = bindtoroot
 trigger1 = time <= 1
 pos = 30,0
-ignorehitpause = 1
+facing = 1
 
-[State 810, 音を鳴らす];掴み用
+[State 810, 音を鳴らす]
 type = nothitby
 trigger1 = animelemtime(4) < 0
 value = SCA
@@ -9122,11 +9306,6 @@ supermovetime = 99999
 pausemovetime = 99999
 
 [State 0, end]
-type = null;bindtoroot
-trigger1 = time < 2
-pos = 40,0
-
-[State 0, end]
 type = width
 trigger1 = time < 3
 edge = 80,-80
@@ -9258,6 +9437,7 @@ y = 0
 type = bindtoroot
 trigger1 = !time
 pos = 100,0
+facing = 1
 
 [State 0, var]
 type = targetbind
@@ -9883,7 +10063,7 @@ scale = .75,.75
 pausemovetime = 999999
 supermovetime = 999999
 
-[State 810, 音を鳴らす];掴み用
+[State 810, 音を鳴らす]
 type = nothitby
 trigger1 = time < 70
 value = SCA
@@ -9992,7 +10172,7 @@ ignorehitpause=1
 persistent = 0
 id = 3100
 
-[State 810, 音を鳴らす];掴み用
+[State 810, 音を鳴らす]
 type = nothitby
 trigger1 = 1
 value = SCA
@@ -10738,7 +10918,7 @@ time = 60
 persistent = 0
 ignorehitpause = 1
 
-[State 810, 音を鳴らす];掴み用
+[State 810, 音を鳴らす]
 type = nothitby
 trigger1 = time <= 72
 value = SCA
@@ -11560,7 +11740,7 @@ ignorehitpause = 1
 type = bindtoroot
 trigger1 = 1
 pos = 0,0
-ignorehitpause = 1
+facing = 1
 
 [State 0, assert]
 type = assertspecial
