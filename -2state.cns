@@ -5,7 +5,7 @@
 [State -2, GetHurt Sound]
 type = PlaySnd
 triggerall = stateno != [120,159]
-triggerall = var(56)-life > 200
+triggerall = var(56)-life >= 200
 triggerall = Alive = 1
 trigger1 = var(56)-life > 0
 trigger1 = movetype = H
@@ -15,7 +15,7 @@ channel = 10
 [State -2, GetHurt Sound]
 type = PlaySnd
 triggerall = stateno != [120,159]
-triggerall = Random%2 = 0 && var(56)-life = (100, 200]
+triggerall = Random%2 = 0 && var(56)-life = [100, 200)
 triggerall = Alive = 1
 trigger1 = var(56)-life > 0
 trigger1 = movetype = H
@@ -25,7 +25,7 @@ channel = 10
 [State -2, GetHurt Sound]
 type = PlaySnd
 triggerall = stateno != [120,159]
-triggerall = Random%3 = 0 && var(56)-life = (50, 100]
+triggerall = Random%3 = 0 && var(56)-life = [50, 100)
 triggerall = Alive = 1
 trigger1 = var(56)-life > 0
 trigger1 = movetype = H
@@ -35,7 +35,7 @@ channel = 10
 [State -2, GetHurt Sound]
 type = PlaySnd
 triggerall = stateno != [120,159]
-triggerall = Random%4 = 0 && var(56)-life = (8, 50]
+triggerall = Random%4 = 0 && var(56)-life = (8, 50)
 triggerall = Alive = 1
 trigger1 = var(56)-life > 0
 trigger1 = movetype = H
@@ -46,6 +46,13 @@ channel = 10
 type = VarSet
 trigger1 = 1
 var(56) = life
+
+[State 5910]
+type = PlaySnd
+trigger1 = anim = 5910
+trigger1 = animelemtime(1) = 1
+value = 5910, random%2
+channel = 10
 
 [state -2, helper]
 type = helper
