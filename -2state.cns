@@ -238,7 +238,19 @@ type = VarAdd
 triggerall = !(stateno=[800,810])
 triggerall = !(stateno=[3000,3499])
 trigger1 = movehit = 1 || projhit = 1
-var(13) = 1 + (var(8) > 0)*2
+var(13) = 1
+
+;加重加算
+[State -2,ヒット数]
+type = VarAdd
+triggerall = movehit = 1
+trigger1 = var(8) = 1
+var(13) = 2
+[State -2,ヒット数]
+type = VarAdd
+triggerall = movehit = 1
+trigger1 = stateno = 230
+var(13) = 1
 
 [State -2,ヒット数初期化]
 type = VarSet
@@ -246,13 +258,6 @@ triggerall = var(13) != 0
 trigger1 = EnemyNear,MoveType != H
 trigger1 = NumTarget = 0
 var(13) = 0
-
-[State -2,投げ補正初期化]
-type = VarSet
-triggerall = var(14) != 0
-trigger1 = EnemyNear,MoveType != H
-trigger1 = NumTarget = 0
-var(14) = 0
 
 [State -2,浮き補正]
 type = varset
@@ -267,13 +272,19 @@ fVar(20) = 0
 
 [State -2,コンボ補正3]
 type = VarSet
-trigger1 = fvar(10) < 0.5
-trigger1 = (stateno=[3000,3499]) && (!var(14))
-fVar(10) = IFElse(var(7), 1.0, 0.5)
+trigger1 = 1
+fVar(10) = ifelse((1.0-(var(13)*0.05))<=0,0.1,(1.0-(var(13)*0.05)))
 [State -2,コンボ補正3]
 type = VarSet
-trigger1 = !(stateno=[3000,3499]) || (var(14))
-fVar(10) = ifelse((1.0-(var(13)*0.05))*ifelse(var(14),.5,1)<=0,0.1,(1.0-(var(13)*0.05))*ifelse(var(14),.5,1))
+triggerall = fvar(10) < 0.5
+trigger1 = (stateno=[3000,3499])
+fVar(10) = IFElse(var(7), 1.0, 0.5)
+
+[State -2,アサルトフラグ]
+type = varset
+trigger1 = var(8) > 0
+trigger1 = movehit = 1
+var(8) = 10
 
 [State -2,アサルトフラグ]
 type = varset
@@ -364,6 +375,14 @@ type = removeexplod
 trigger1 = stateno != [3200,3299]
 id = 3229
 
+[State 0, end]
+type = removeexplod
+triggerall = NumExplod(7700)
+trigger1 = movecontact
+trigger2 = !var(8)
+id = 7700
+ignorehitpause = 1
+
 ;---------------------------------------------------------------------------
 [State -1, タッグ用生死判別];
 Type = VarSet
@@ -385,8 +404,8 @@ IgnoreHitPause = 1
 [State -2, クリップボード]
 type     = DisplayToClipBoard
 trigger1 = 1
-text     = "v50=%d,v51=%d,hit=%d,power=%d,hosei=%f,intro=%f"
-params   = var(50),var(51),var(13),power,fvar(10),fvar(21)
+text     = "v50=%d,v51=%d,hit=%d,power=%d,hosei=%f,19=%d"
+params   = var(50),var(51),var(13),power,fvar(10),var(19)
 IgnoreHitPause = 1
 
 
@@ -398,21 +417,29 @@ channel = 5
 [State -3, GetHurt Sound]
 type = varset
 trigger1 = alive
-var(19) = 0
+var(17) = 0
 [State -3, GetHurt Sound]
 type = varadd
 trigger1 = !alive
-var(19) = 1
+var(17) = 1
 
 [State -3, GetHurt Sound]
 type = playsnd
-trigger1 = var(19) = 1
+trigger1 = var(17) = 1
 value = 11, 1 + Random%2
 channel = 10
 
 ;---------------------------------------------------------------------------
 ;---------------------------------------------------------------------------
 [Statedef -3]
+
+[State 200, キャンセルフラグ]
+type = VarSet
+trigger1 = movetype != A
+trigger2 = movetype = A && time = 1
+trigger3 = stateno = 300 && time = 1
+var(4) = 0
+ignorehitpause = 1
 
 [State -3, AI]
 type=helper
