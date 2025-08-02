@@ -511,7 +511,7 @@ persistent = 0
 ; HIT_GETUP
 [Statedef 5120]
 type    = L
-movetype= I
+movetype = I
 physics = N
 velset = 0,-6
 
@@ -761,7 +761,7 @@ ctrl = 1
 ; HIT_AIRFALLRECOVER
 [Statedef 5210]
 type    = A
-movetype= I
+movetype = I
 physics = N
 anim = 5210
 ctrl = 0
@@ -2697,18 +2697,6 @@ trigger1 = AnimElemTime(2) >= 0
 var(4) = 1
 ignorehitpause = 1
 
-[State 600, 変数]
-type = VarSet
-trigger1 = AnimElemTime(1) = 0
-var(1)= 0
-
-[State 600, 変数]
-type = VarSet
-triggerall = movecontact || movereversed
-trigger1 = AnimElemTime(2) >= 0
-var(1)= 1
-ignorehitpause = 1
-
 [State 600, 音を鳴らす]
 type = PlaySnd
 trigger1 = AnimElem = 2
@@ -2729,7 +2717,7 @@ attr = A, NA
 animtype  = light
 damage    = ceil(28*fVar(10)),0
 guardflag = HA
-pausetime = IfElse(var(8) > 0, 30, 11), IfElse(var(8) > 0, 30, 11)
+pausetime = 11, 11
 sparkno = -1
 guard.sparkno = s6040
 sparkxy = -36,-60
@@ -2737,18 +2725,19 @@ hitsound   = -1
 guardsound = s10,0
 priority = 4, Hit
 ground.type = high
-ground.slidetime = IfElse(var(8) > 0, 30, 14)
-ground.hittime  = IfElse(var(8) > 0, 30, 14)
+ground.slidetime = 14
+ground.hittime  = 14
 guard.hittime = 14
 guard.ctrltime = 14
 ground.velocity = -4
-guard.velocity = IfElse(var(8) > 0, -11, -4)
+guard.velocity = -4
 air.velocity = -3.4, -4 + fVar(20)
+airguard.velocity = -3.4, -2
 yaccel = 0.45
 getpower = 40,0
-givepower = 20,(var(8)>0)*300
+givepower = 20, 0
 fall = 0
-air.fall = ifelse(p2Movetype=H || var(8) > 0,1,0)
+air.fall = 0
 fall.recover = 0
 down.bounce = 0
 
@@ -2787,21 +2776,21 @@ id = 705
 ignorehitpause = 1
 persistent = 0
 
-[State 600, 特殊]
+[State 600, set]
 type = StateTypeSet
-trigger1 = AnimElemTime(3) >= 0
+trigger1 = AnimElemTime(3) = 9
 statetype = A
-movetype= I
-
-[State 3001, Width]
-type = Width
-trigger1 = 1
-edge = 5,0
+movetype = I
 
 [State 200, end]
 type = CtrlSet
 trigger1 = animelemtime(3) = 9
 value = 1
+
+[State 3001, Width]
+type = Width
+trigger1 = 1
+edge = 5,0
 
 ;---------------------------------------------------------------------------
 ;ジャンプB
@@ -2826,18 +2815,6 @@ trigger1 = AnimElemTime(2) >= 0
 var(4) = 2
 ignorehitpause = 1
 
-[State 600, 変数]
-type = VarSet
-trigger1 = AnimElemTime(1) = 0
-var(1) = 0
-
-[State 600, 変数]
-type = VarSet
-triggerall = movecontact || movereversed
-trigger1 = AnimElemTime(2) >= 0
-var(1)= 1
-ignorehitpause = 1
-
 [State 600, 音を鳴らす]
 type = PlaySnd
 trigger1 = AnimElem = 2;3
@@ -2853,41 +2830,67 @@ channel = 0
 
 [State 200, ヒット定義]
 type = HitDef
+trigger1 = var(8) = 0
 trigger1 = AnimElem = 2
 attr = A, NA
 animtype  = medium
-damage    = ceil(40* (1+((var(8) > 0)*0.5)) *fVar(10)),0
+damage    = ceil(40*fVar(10)),0
 guardflag = HA
-pausetime = IfElse(var(8) > 0, 30, 11), IfElse(var(8) > 0, 30, 11)
+pausetime = 11, 11
 sparkno = -1
 guard.sparkno = s6040
 sparkxy = -46,-70
-hitsound   = -1
-guardsound = s10,0
+hitsound   = s5, 1
+guardsound = s10, 0
 priority = 4, Hit
 ground.type = high
-ground.slidetime = IfElse(var(8) > 0, 30, 14)
-ground.hittime  = IfElse(var(8) > 0, 30, 14)
+ground.slidetime = 14
+ground.hittime  = 14
 guard.hittime = 14
 guard.ctrltime = 14
 ground.velocity = -4
-guard.velocity = IfElse(var(8) > 0, -11, -4)
-air.velocity = IfElse(var(8) > 0, -2, -3.4), IfElse(var(8) > 0, -8, -4 + fVar(20))
-airguard.velocity = IfElse(var(8) > 0, -11, -3.4), -2
+guard.velocity = -4
+air.velocity = -3.4, -4 + fVar(20)
+airguard.velocity = -3.4, -2
 yaccel = 0.45
 getpower = 50,0
-givepower = 25,(var(8)>0)*300
+givepower = 25,0
 fall = 0
-air.fall = ifelse(p2Movetype=H || var(8) > 0,1,0)
+air.fall = 0
 fall.recover = 0
 down.bounce = 0
 
-[State 0, assault]
-type = playsnd
-trigger1 = MoveHit = 1
-value = 5, IfElse(var(8) > 0, 12, 1)
-ignorehitpause = 1
-persistent = 0
+[State 200, ヒット定義]
+type = HitDef
+trigger1 = var(8) > 0
+trigger1 = AnimElem = 2
+attr = A, NA
+animtype  = hard
+damage    = ceil(40* (1+((var(8) > 0)*0.5)) *fVar(10)),0
+guardflag = H
+pausetime = 30, 30
+sparkno = -1
+guard.sparkno = s6040
+sparkxy = -46,-70
+hitsound   = s5, 12
+guardsound = s10, 0
+priority = 4, Hit
+ground.type = high
+ground.slidetime = 30
+ground.hittime  = 30
+guard.hittime = 14
+guard.ctrltime = 14
+ground.velocity = -4
+guard.velocity = -11
+air.velocity = -2, -8
+airguard.velocity = -11, -2
+yaccel = 0.45
+getpower = 50,0
+givepower = 25,300
+fall = 0
+air.fall = 1
+fall.recover = 0
+down.bounce = 0
 
 [State 0, assault]
 type = explod
@@ -2917,11 +2920,16 @@ id = 705
 ignorehitpause = 1
 persistent = 0
 
-[State 600, 特殊]
+[State 600, set]
 type = StateTypeSet
-trigger1 = AnimElemTime(4) >= 0
+trigger1 = AnimElemTime(3) = 9
 statetype = A
-movetype= I
+movetype = I
+
+[State 200, end]
+type = CtrlSet
+trigger1 = animelemtime(3) = 9
+value = 1
 
 [State 3001, Width]
 type = Width
@@ -2932,11 +2940,6 @@ edge = 5,0
 type = ChangeState
 trigger1 = vel y > 0 && pos y >= 0
 value = 52
-
-[State 200, end]
-type = CtrlSet
-trigger1 = animelemtime(3) = 9
-value = 1
 
 ;---------------------------------------------------------------------------
 ;ジャンプC
@@ -2961,18 +2964,6 @@ trigger1 = AnimElemTime(2) >= 0
 var(4) = 3
 ignorehitpause = 1
 
-[State 600, 変数]
-type = VarSet
-trigger1 = AnimElemTime(1) = 0
-var(1)= 0
-
-[State 600, 変数]
-type = VarSet
-triggerall = movecontact || movereversed
-trigger1 = AnimElemTime(2) >= 0
-var(1)= 1
-ignorehitpause = 1
-
 [State 200, 音を鳴らす]
 type = PlaySnd
 trigger1 = var(8) = 0
@@ -2988,42 +2979,67 @@ channel = 1
 
 [State 200, ヒット定義]
 type = HitDef
+trigger1 = var(8) = 0
+trigger1 = AnimElem = 2
+attr = A, NA
+animtype  = medium
+damage    = ceil(70*fVar(10)),0
+guardflag = HA
+pausetime = 11, 11
+sparkno = -1
+guard.sparkno = s6040
+sparkxy = -56, -42
+hitsound   = s5, 2
+guardsound = s10, 0
+priority = 4, Hit
+ground.type = high
+ground.slidetime = 14
+ground.hittime  = 14
+guard.hittime = 14
+guard.ctrltime = 14
+ground.velocity = -4
+guard.velocity = -4
+air.velocity = -3.4, -4 + fVar(20)
+airguard.velocity = -3.4, -2
+yaccel = 0.45
+getpower = 80,0
+givepower = 40,0
+fall = 0
+air.fall = 0
+fall.recover = 0
+down.bounce = 0
+
+[State 200, ヒット定義]
+type = HitDef
+trigger1 = var(8) > 0
 trigger1 = AnimElem = 2
 attr = A, NA
 animtype  = hard
 damage    = ceil(70* (1+((var(8) > 0)*0.5)) *fVar(10)),0
-guardflag = HA
-pausetime = IfElse(var(8) > 0, 30, 11), IfElse(var(8) > 0, 30, 11)
+guardflag = H
+pausetime = 30, 30
 sparkno = -1
 guard.sparkno = s6040
 sparkxy = -56,-42
-hitsound   = -1
-guardsound = s10,0
+hitsound   = s5, 12
+guardsound = s10, 0
 priority = 4, Hit
 ground.type = high
-ground.slidetime = IfElse(var(8) > 0, 30, 14)
-ground.hittime  = IfElse(var(8) > 0, 30, 14)
+ground.slidetime = 30
+ground.hittime  = 30
 guard.hittime = 14
 guard.ctrltime = 14
 ground.velocity = -4
-guard.velocity = IfElse(var(8) > 0, -11, -4)
-air.velocity = IfElse(var(8) > 0, -2, -3.4), IfElse(var(8) > 0, -8, -4 + fVar(20))
-airguard.velocity = IfElse(var(8) > 0, -11, -3.4), -2
+guard.velocity = -11
+air.velocity = -2, -8
+airguard.velocity = -11, -2
 yaccel = 0.45
-getpower = 80*!(var(6)),0
-givepower = 40,(var(8)>0)*300
+getpower = 50,0
+givepower = 25,300
 fall = 0
-air.fall = ifelse(p2Movetype=H || var(8) > 0,1,0)
+air.fall = 1
 fall.recover = 0
 down.bounce = 0
-guard.kill = 0
-
-[State 0, assault]
-type = playsnd
-trigger1 = MoveHit = 1
-value = 5, IfElse(var(8) > 0, 12, 2)
-ignorehitpause = 1
-persistent = 0
 
 [State 0, assault]
 type = explod
@@ -3053,11 +3069,16 @@ id = 705
 ignorehitpause = 1
 persistent = 0
 
-[State 600, 特殊]
+[State 600, set]
 type = StateTypeSet
-trigger1 = AnimElemTime(4) >= 0
+trigger1 = AnimElemTime(3) = 9
 statetype = A
-movetype= I
+movetype = I
+
+[State 200, end]
+type = CtrlSet
+trigger1 = animelemtime(3) = 9
+value = 1
 
 [State 3001, Width]
 type = Width
@@ -3068,11 +3089,6 @@ edge = 5,0
 type = ChangeState
 trigger1 = vel y > 0 && pos y >= 0
 value = 52
-
-[State 200, end]
-type = CtrlSet
-trigger1 = animelemtime(3) = 9
-value = 1
 
 ;---------------------------------------------------------------------------
 ;アサルト or アサルトチェイン
@@ -3197,8 +3213,12 @@ value = 3, 8
 [State 100, 1]
 type = VelSet
 trigger1 = Time = 5
-x = IfElse(P2Dist x / 32 <= 0.5, 0.5, IfElse(P2Dist x / 32 > Const(velocity.jump.fwd.x)*2, Const(velocity.jump.fwd.x)*2, P2Dist x / 32))
 y = -9.0
+
+[State 100, 1]
+type = VelSet
+trigger1 = Time = [5, 15)
+x = IfElse(P2Dist x / 32 <= 0, 0, IfElse(P2Dist x / 32 > Const(velocity.jump.fwd.x)*2, Const(velocity.jump.fwd.x)*2, P2Dist x / 32)) + (var(8) = 2)*2.5
 
 [State 100, 3]
 type = veladd
@@ -5855,7 +5875,7 @@ ctrl = 1
 ;スピットファイヤー(stand)
 [Statedef 1250]
 type    = S
-movetype= I
+movetype = I
 physics = N
 poweradd = 0
 velset = 0,0
@@ -6159,7 +6179,7 @@ trigger1 = !time
 var(20) = 0
 [State 0, hitvel]
 type = parentvarset
-trigger1 = movecontact || movereversed
+trigger1 = movecontact
 trigger2 = time > 60
 var(20) = 1
 persistent = 0
