@@ -404,8 +404,8 @@ IgnoreHitPause = 1
 [State -2, クリップボード]
 type     = DisplayToClipBoard
 trigger1 = 1
-text     = "v50=%d,v51=%d,hit=%d,power=%d,hosei=%f,19=%d"
-params   = var(50),var(51),var(13),power,fvar(10),var(19)
+text     = "cancel=%d,v51=%d,hit=%d,power=%d,hosei=%f,19=%d"
+params   = var(4),var(51),var(13),power,fvar(10),var(19)
 IgnoreHitPause = 1
 
 
