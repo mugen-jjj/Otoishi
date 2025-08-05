@@ -255,7 +255,7 @@ var(13) = 1
 [State -2,ƒqƒbƒg”‰Šú‰»]
 type = VarSet
 triggerall = var(13) != 0
-trigger1 = EnemyNear,MoveType != H
+trigger1 = p2MoveType != H
 trigger1 = NumTarget = 0
 var(13) = 0
 

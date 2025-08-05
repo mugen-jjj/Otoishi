@@ -7733,7 +7733,7 @@ air.cornerpush.veloff = -6
 palfx.sinadd = 42,42,10,8
 palfx.mul = 364,364,128
 palfx.time = 32
-id = 1200
+id = stateno
 sprpriority = 2
 
 [State , VarSet]
