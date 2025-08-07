@@ -2226,9 +2226,9 @@ ground.type = low
 ground.slidetime = 20
 ground.hittime  = 20
 guard.slidetime = 20
-ground.velocity = -3.5,-10.2 + fVar(20)
+ground.velocity = -3.5,-8.2 + fVar(20)
 guard.velocity = -2
-air.velocity = -3.5,-10.2 + fVar(20)
+air.velocity = -3.5,-8.2 + fVar(20)
 yaccel = 0.45
 getpower = 80,0
 givepower = 40,0
@@ -6055,11 +6055,19 @@ scale = .45,.6
 type = parentvaradd
 trigger1 = var(46)
 var(13) = var(46)
+ignorehitpause = 1
+
+[State 0, end]
+type = poweradd
+trigger1 = var(46)
+value = 80
+ignorehitpause = 1
 
 [State 0, end]
 type = varset
 trigger1 = var(46)
 var(46) = 0
+ignorehitpause = 1
 
 [State 200, ƒqƒbƒg’è‹`]
 type = HitDef
@@ -6087,7 +6095,7 @@ guard.velocity = -3.5
 air.velocity = -4, -3.8 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
-givepower = 1,0
+givepower = 40,0
 fall = 0
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 0
@@ -6121,7 +6129,7 @@ guard.velocity = -1
 air.velocity = -4, -3.8 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
-givepower = 1,0
+givepower = 40,0
 fall = 0+(root,var(21))
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 0
@@ -6647,7 +6655,7 @@ guard.sparkno = s6010
 hitsound = s1,0
 guardsound = s9,0
 getpower = 0,0
-givepower = 0,0
+givepower = 40,0
 ground.type = Low
 ground.slidetime = 21
 ground.hittime = 21
@@ -6701,11 +6709,6 @@ var(13) = 1
 ignorehitpause = 1
 
 [State 0, end]
-type = poweradd
-trigger1 = var(49)
-value = 80
-ignorehitpause = 1
-[State 0, end]
 type = varset
 trigger1 = var(49)
 var(49) = 0
@@ -6758,7 +6761,7 @@ physics = N
 ctrl = 0
 anim = 1360
 velset = 0,0
-poweradd = 0
+poweradd = 100
 sprpriority = 2
 
 [State 0, var]
@@ -7647,7 +7650,7 @@ guard.velocity = -2
 air.velocity = -6,-4.5 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
-givepower = 10,0
+givepower = 40,0
 fall = 1
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 0
@@ -7688,7 +7691,7 @@ guard.velocity = -2
 air.velocity = -3,-1.5 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
-givepower = 10,0
+givepower = 5,0
 fall = 0
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 0
@@ -7800,7 +7803,7 @@ persistent = 0
 [State 0, end]
 type = poweradd
 trigger1 = var(49)
-value = ifelse(var(7),20,100)
+value = ifelse(var(7),10, 80)
 ;ignorehitpause = 1
 [State 0, end]
 type = varset
@@ -8208,7 +8211,7 @@ guard.velocity = -2
 air.velocity = -3,-5 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
-givepower = 15,0
+givepower = 7,0
 fall = 1
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 0
@@ -8247,7 +8250,7 @@ guard.velocity = -2
 air.velocity = -3,-5 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
-givepower = 15,0
+givepower = 7,0
 fall = 0
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 0
@@ -8284,7 +8287,7 @@ guard.velocity = -2
 air.velocity = -3,-5 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
-givepower = 15,0
+givepower = 7,0
 fall = 0
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 0
@@ -8342,7 +8345,7 @@ persistent = 0
 [State 0, end]
 type = poweradd
 trigger1 = var(49)
-value = 30
+value = 15
 ;ignorehitpause = 1
 [State 0, end]
 type = varset
@@ -8738,7 +8741,7 @@ guard.velocity = -2
 air.velocity = -3,-6 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
-givepower = 15,0
+givepower = 10,0
 fall = 0
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 1
@@ -8776,7 +8779,7 @@ guard.velocity = -2
 air.velocity = -3,-6 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
-givepower = 15,0
+givepower = 10,0
 fall = 1
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 0
@@ -8816,7 +8819,7 @@ guard.velocity = -2
 air.velocity = -3,-6 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
-givepower = 15,0
+givepower = 5,0
 fall = 0
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 1
@@ -8853,7 +8856,7 @@ guard.velocity = -2
 air.velocity = -3,-6 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
-givepower = 15,0
+givepower = 10,0
 fall = (root,var(21))
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 0
@@ -8944,7 +8947,7 @@ persistent = 0
 [State 0, end]
 type = poweradd
 trigger1 = var(49)
-value = ifelse(var(7),10,20)
+value = IfElse(var(7) = 0, 20, 10)
 ;ignorehitpause = 1
 [State 0, end]
 type = varset
