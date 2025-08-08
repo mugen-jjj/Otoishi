@@ -1,6 +1,6 @@
 [Statedef -2]
 
-;‹ò‚ç‚¢ƒ{ƒCƒX—p
+;å–°ã‚‰ã„ãƒœã‚¤ã‚¹ç”¨
 ;XL
 [State -2, GetHurt Sound]
 type = PlaySnd
@@ -85,7 +85,7 @@ pausemovetime = 99999999
 supermovetime = 99999999
 
 ;--------------------------------------------------------------------------------
-;“dŒ‚ƒQ[ƒW
+;é›»æ’ƒã‚²ãƒ¼ã‚¸
 [state -2, helper]
 type = varset
 trigger1 = !var(58)
@@ -158,7 +158,7 @@ var(58) = 0
 IgnoreHitPause = 1
 
 ;--------------------------------------------------------------------------------
-;•ö‚ê—‚¿§ŒÀ
+;å´©ã‚Œè½ã¡åˆ¶é™
 
 [State -2]
 type = varset
@@ -166,7 +166,7 @@ trigger1 = p2movetype != H
 var(21) = 0
 
 ;--------------------------------------------------------------------------------
-;•‚‚©‚³‚ê’†
+;æµ®ã‹ã•ã‚Œä¸­
 
 [State -2]
 type = AngleDraw
@@ -179,7 +179,7 @@ trigger1 = anim = 5030 || anim = 5035 || anim = 5050 || anim = 5070 || anim = 51
 value = 10
 
 ;--------------------------------------------------------------------------------
-;•‚‚©‚³‚ê’†
+;æµ®ã‹ã•ã‚Œä¸­
 [State -2]
 type = offset
 ;trigger1 = stateno = [5020,5099]
@@ -187,7 +187,7 @@ trigger1 = anim = 5030 || anim = 5035 || anim = 5050 || anim = 5070
 y = -70
 
 ;--------------------------------------------------------------------------------
-[State 1000, ƒXƒe[ƒg•ÏX]
+[State 1000, ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´]
 type = playsnd
 ;trigger1 = var(16) > 0
 triggerall = stateno = 3110
@@ -200,7 +200,7 @@ trigger6 = time = 90
 value = s4,1
 channel = 7
 
-[State 1000, ƒXƒe[ƒg•ÏX]
+[State 1000, ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´]
 type = playsnd
 ;trigger1 = var(16) > 0
 trigger1 = stateno = 3110
@@ -209,19 +209,19 @@ trigger1 = time % 3 = 0
 value = s4,2+random%2
 channel = 9
 
-[State 1000, ƒXƒe[ƒg•ÏX]
+[State 1000, ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´]
 type = playsnd
 trigger1 = var(15) > 0
 trigger1 = random %2 = 0
 value = s4,0
 channel = 8
 
-;ƒMƒ^[ƒqƒbƒg‰¹
-[State -2,ƒqƒbƒg”]
+;ã‚®ã‚¿ãƒ¼ãƒ’ãƒƒãƒˆéŸ³
+[State -2,ãƒ’ãƒƒãƒˆæ•°]
 type = Varset
 trigger1 = var(15) > 0
 var(15) = 0
-[State -2,ƒqƒbƒg”]
+[State -2,ãƒ’ãƒƒãƒˆæ•°]
 type = Varset
 trigger1 = var(16) > 0
 var(16) = 0
@@ -232,61 +232,67 @@ type = varset
 trigger1 = ctrl = 1
 var(12) = 1
 
-;ƒqƒbƒg”ƒJƒEƒ“ƒg
-[State -2,ƒqƒbƒg”]
+[State -2, power_limit]
+type = VarSet
+triggerall = var(5) = 0
+trigger1 = p2MoveType != H
+var(5) = 1
+
+;ãƒ’ãƒƒãƒˆæ•°ã‚«ã‚¦ãƒ³ãƒˆ
+[State -2,ãƒ’ãƒƒãƒˆæ•°]
 type = VarAdd
 triggerall = !(stateno=[800,810])
 triggerall = !(stateno=[3000,3499])
 trigger1 = movehit = 1 || projhit = 1
 var(13) = 1
 
-;‰Ád‰ÁZ
-[State -2,ƒqƒbƒg”]
+;åŠ é‡åŠ ç®—
+[State -2,ãƒ’ãƒƒãƒˆæ•°]
 type = VarAdd
 triggerall = movehit = 1
 trigger1 = var(8) = 1
-var(13) = 2
-[State -2,ƒqƒbƒg”]
+var(13) = 3
+[State -2,ãƒ’ãƒƒãƒˆæ•°]
 type = VarAdd
 triggerall = movehit = 1
 trigger1 = stateno = 230
 var(13) = 1
 
-[State -2,ƒqƒbƒg”‰Šú‰»]
+[State -2,ãƒ’ãƒƒãƒˆæ•°åˆæœŸåŒ–]
 type = VarSet
 triggerall = var(13) != 0
 trigger1 = p2MoveType != H
 trigger1 = NumTarget = 0
 var(13) = 0
 
-[State -2,•‚‚«•â³]
+[State -2,æµ®ãè£œæ­£]
 type = varset
 trigger1 = Var(13) >= 5
 fVar(20) = 0.50*(var(13))
 
-[State -2,•‚‚«•â³ƒŠƒZƒbƒg]
+[State -2,æµ®ãè£œæ­£ãƒªã‚»ãƒƒãƒˆ]
 type = varset
 triggerall = p2MoveType != H
 trigger1 = var(13) = 0
 fVar(20) = 0
 
-[State -2,ƒRƒ“ƒ{•â³3]
+[State -2,ã‚³ãƒ³ãƒœè£œæ­£3]
 type = VarSet
 trigger1 = 1
 fVar(10) = ifelse((1.0-(var(13)*0.05))<=0,0.1,(1.0-(var(13)*0.05)))
-[State -2,ƒRƒ“ƒ{•â³3]
+[State -2,ã‚³ãƒ³ãƒœè£œæ­£3]
 type = VarSet
 triggerall = fvar(10) < 0.5
 trigger1 = (stateno=[3000,3499])
 fVar(10) = IFElse(var(7), 1.0, 0.5)
 
-[State -2,ƒAƒTƒ‹ƒgƒtƒ‰ƒO]
+[State -2,ã‚¢ã‚µãƒ«ãƒˆãƒ•ãƒ©ã‚°]
 type = varset
 trigger1 = var(8) > 0
 trigger1 = movehit = 1
 var(8) = 10
 
-[State -2,ƒAƒTƒ‹ƒgƒtƒ‰ƒO]
+[State -2,ã‚¢ã‚µãƒ«ãƒˆãƒ•ãƒ©ã‚°]
 type = varset
 trigger1 = (statetype != A && stateno != 52 && stateno != 700)
 trigger2 = movetype = H
@@ -329,14 +335,14 @@ trigger1 = MoveGuarded
 var(8) = -1
 ignorehitpause = 1
 
-;movehitŠ´’m
-[State -2,ƒqƒbƒg”]
+;movehitæ„ŸçŸ¥
+[State -2,ãƒ’ãƒƒãƒˆæ•°]
 type = Varset
 trigger1 = movecontact = 1
 var(19) = 1
 IgnoreHitPause = 1
 ;reset
-[State -2,ƒqƒbƒg”]
+[State -2,ãƒ’ãƒƒãƒˆæ•°]
 type = Varset
 trigger1 = movecontact = 1
 var(19) = 0
@@ -351,7 +357,7 @@ id = 226
 type = removeexplod
 trigger1 = stateno != 230
 id = 236
-[State 903, ŠÔ’â~]
+[State 903, æ™‚é–“åœæ­¢]
 type = removeexplod
 trigger1 = stateno != 230
 id = 238
@@ -384,7 +390,7 @@ id = 7700
 ignorehitpause = 1
 
 ;---------------------------------------------------------------------------
-[State -1, ƒ^ƒbƒO—p¶€”»•Ê];
+[State -1, ã‚¿ãƒƒã‚°ç”¨ç”Ÿæ­»åˆ¤åˆ¥];
 Type = VarSet
 triggerall = RoundState = 2
 trigger1 = NumEnemy = 1
@@ -393,7 +399,7 @@ trigger2 = EnemyNear(0),life > 0
 var(48) = 0
 IgnoreHitPause = 1
 
-[State -1, ƒ^ƒbƒO—p¶€”»•Ê];
+[State -1, ã‚¿ãƒƒã‚°ç”¨ç”Ÿæ­»åˆ¤åˆ¥];
 Type = VarSet
 triggerall = RoundState = 2
 trigger1 = NumEnemy = 2
@@ -401,7 +407,7 @@ trigger1 = EnemyNear(0),life <= 0
 var(48) = 1
 IgnoreHitPause = 1
 
-[State -2, ƒNƒŠƒbƒvƒ{[ƒh]
+[State -2, ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰]
 type     = DisplayToClipBoard
 trigger1 = 1
 text     = "cancel=%d,v51=%d,hit=%d,power=%d,hosei=%f,19=%d"
@@ -433,7 +439,7 @@ channel = 10
 ;---------------------------------------------------------------------------
 [Statedef -3]
 
-[State 200, ƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO]
+[State 200, ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°]
 type = VarSet
 trigger1 = movetype != A
 trigger2 = movetype = A && time = 1
@@ -481,7 +487,7 @@ trigger1= stateno!=50000
 value=50000
 
 ;---------------------------------------------------------------------------
-;ƒXƒ^ƒ“ƒh”íƒ_ƒ
+;ã‚¹ã‚¿ãƒ³ãƒ‰è¢«ãƒ€ãƒ¡æ™‚
 [state -3, end]
 type = changestate
 triggerall = stateno != [15000,15999]
