@@ -1340,6 +1340,52 @@ trigger1 = ctrl
 trigger2 = (var(4) = [1, 4])
 value = 2000
 
+;5S > 4,6 Sk
+[State -1, 1200]
+type = ChangeState
+TriggerAll = !var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = command = "b"
+triggerall = command != "holdup"
+triggerall = command != "holddown"
+
+triggerall = var(4) = 5
+trigger1 = stateno = 2000
+trigger2 = var(7)
+trigger2 = (stateno = [2010, 2030])
+value = 2010
+
+;5S > 2S
+[State -1, 1200]
+type = ChangeState
+TriggerAll = !var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = command = "b"
+triggerall = command = "holddown"
+
+triggerall = var(4) = 5
+trigger1 = stateno = 2000
+trigger2 = var(7)
+trigger2 = (stateno = [2010, 2030])
+value = 2020
+
+;5S > 8S
+[State -1, 1200]
+type = ChangeState
+TriggerAll = !var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = command = "b"
+triggerall = command = "holdup"
+
+triggerall = var(4) = 5
+trigger1 = stateno = 2000
+trigger2 = var(7)
+trigger2 = (stateno = [2010, 2030])
+value = 2030
+
 ;2S
 [State -1, 1200]
 type = ChangeState

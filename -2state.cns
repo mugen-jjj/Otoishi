@@ -85,7 +85,7 @@ pausemovetime = 99999999
 supermovetime = 99999999
 
 ;--------------------------------------------------------------------------------
-;電撃ゲージ
+;電力ゲージ
 [state -2, helper]
 type = varset
 trigger1 = !var(58)
@@ -127,6 +127,11 @@ trigger1 = roundstate = 4
 var(58) = 0
 IgnoreHitPause = 1
 
+[State 700, disable]
+type = palfx
+trigger1 = var(7) > 0
+trigger1 = var(58) <= 0
+time = 0
 [state -2, helper]
 type = varset
 trigger1 = var(58) <= 0
@@ -145,6 +150,12 @@ type = playsnd
 trigger1 = var(7) = 1
 value = 4310,random%3
 channel = 8
+[State 700, blueflash]
+type = palfx
+trigger1 = var(7) = 1
+add = 80, 80, 0
+sinadd = -80,-80, 0, 60
+time = -1
 
 [state -2, helper]
 type = varset
@@ -244,42 +255,42 @@ type = VarAdd
 triggerall = !(stateno=[800,810])
 triggerall = !(stateno=[3000,3499])
 trigger1 = movehit = 1 || projhit = 1
-var(13) = 1
+fvar(13) = ifelse(stateno = 410 || stateno = 220, 0.5, 1)
 
 ;加重加算
 [State -2,ヒット数]
 type = VarAdd
 triggerall = movehit = 1
 trigger1 = var(8) = 1
-var(13) = 3
+fvar(13) = 3
 [State -2,ヒット数]
 type = VarAdd
 triggerall = movehit = 1
 trigger1 = stateno = 230
-var(13) = 1
+fvar(13) = 1
 
 [State -2,ヒット数初期化]
 type = VarSet
-triggerall = var(13) != 0
+triggerall = fvar(13) != 0
 trigger1 = p2MoveType != H
 trigger1 = NumTarget = 0
-var(13) = 0
+fvar(13) = 0
 
 [State -2,浮き補正]
 type = varset
-trigger1 = Var(13) >= 5
-fVar(20) = 0.50*(var(13))
+trigger1 = fvar(13) >= 5
+fVar(20) = 0.50*(fvar(13))
 
 [State -2,浮き補正リセット]
 type = varset
 triggerall = p2MoveType != H
-trigger1 = var(13) = 0
+trigger1 = fvar(13) = 0
 fVar(20) = 0
 
 [State -2,コンボ補正3]
 type = VarSet
 trigger1 = 1
-fVar(10) = ifelse((1.0-(var(13)*0.05))<=0,0.1,(1.0-(var(13)*0.05)))
+fVar(10) = ifelse((1.0-(fvar(13)*0.05))<=0,0.1,(1.0-(fvar(13)*0.05)))
 [State -2,コンボ補正3]
 type = VarSet
 triggerall = fvar(10) < 0.5
@@ -410,8 +421,8 @@ IgnoreHitPause = 1
 [State -2, クリップボード]
 type     = DisplayToClipBoard
 trigger1 = 1
-text     = "cancel=%d,v51=%d,hit=%d,power=%d,hosei=%f,19=%d"
-params   = var(4),var(51),var(13),power,fvar(10),var(19)
+text     = "cancel=%d, v13hit=%d, SkillCount=%d,  power=%d, hosei=%f, 19=%d"
+params   = var(4), fvar(13), var(23), power, fvar(10), var(19)
 IgnoreHitPause = 1
 
 
@@ -439,12 +450,18 @@ channel = 10
 ;---------------------------------------------------------------------------
 [Statedef -3]
 
-[State 200, キャンセルフラグ]
+[State 200, ResetCancelFlag]
 type = VarSet
 trigger1 = movetype != A
 trigger2 = movetype = A && time = 1
 trigger3 = stateno = 300 && time = 1
 var(4) = 0
+ignorehitpause = 1
+
+[State 200, ResetSkillCount]
+type = VarSet
+trigger1 = stateno != [1000, 3999]
+var(23) = 0
 ignorehitpause = 1
 
 [State -3, AI]

@@ -13,7 +13,7 @@
 ; Var(10) = 敗北演出設定
 ; Var(11) = 勝利演出
 ; Var(12) = 試合開始フラグ
-; Var(13) = ヒット数
+; fvar(13) = 
 ; Var(14) = 
 ; Var(15) = ギターヒット音 
 ; Var(16) = 
@@ -24,7 +24,7 @@
 ; Var(20) = 便利var
 ; Var(21) = 崩れ落ち制限
 ; Var(22) = 電力no
-; Var(23) = 
+; Var(23) = Skill使用カウント
 ; Var(24) = 
 ; Var(25) = 
 ; Var(26) = 
@@ -79,7 +79,7 @@
 ;FVar(10) = コンボ補正
 ;FVar(11) = 
 ;FVar(12) = 
-;FVar(13) = 
+;Ffvar(13) = ヒット数
 ;FVar(14) = 
 ;FVar(15) = 
 ;FVar(16) = 
@@ -1465,7 +1465,7 @@ trigger1 = AnimElem = 2
 value = 3,0
 channel = 1
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = (!movecontact && !movereversed)
 trigger1 = AnimElem = 2
@@ -1540,15 +1540,22 @@ elem = 2
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = time > 0 && root,time = 1
+triggerall = time > 1 && root,time <= 2
 trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
 value = root,stateno + 5
 
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time = 1
-trigger1 = (root,stateno = [1000,1100]) || (root,stateno = 2000||root,stateno = 2100||root,stateno = 2200) || (root,stateno = 3000)
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
 value = root,stateno + 50
 
 [State 0, explod]
@@ -1635,7 +1642,7 @@ trigger1 = AnimElem = 3
 value = 3,1
 channel = 1
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = (!movecontact && !movereversed)
 trigger1 = AnimElem = 3
@@ -1711,15 +1718,22 @@ elem = 5
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = time > 0 && root,time = 1
+triggerall = time > 1 && root,time <= 2
 trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
 value = root,stateno + 5
 
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time = 1
-trigger1 = (root,stateno = [1000,1100]) || (root,stateno = 2000||root,stateno = 2100||root,stateno = 2200) || (root,stateno = 3000)
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
 value = root,stateno + 50
 
 [State 0, explod]
@@ -1862,7 +1876,7 @@ type = removeexplod
 trigger1 = time = 25
 id = 226
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = AnimElem = 3
 trigger2 = AnimElem = 4
@@ -1899,7 +1913,7 @@ palfx.time = 32
 ground.cornerpush.veloff = 0
 air.cornerpush.veloff = 0
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = AnimElem = 5
 attr = S, NA
@@ -2001,15 +2015,22 @@ elem = 6
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = time > 0 && root,time = 1
+triggerall = time > 1 && root,time <= 2
 trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
 value = root,stateno + 5
 
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time = 1
-trigger1 = (root,stateno = [1000,1100]) || (root,stateno = 2000||root,stateno = 2100||root,stateno = 2200) || (root,stateno = 3000)
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
 value = root,stateno + 50
 
 [State 0, explod]
@@ -2207,7 +2228,7 @@ type = removeexplod
 trigger1 = !animtime
 id = 238
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = !var(7)
 trigger1 = AnimElem = 3
@@ -2323,7 +2344,7 @@ trigger1 = AnimElem = 2
 value = 3,0
 channel = 1
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = AnimElem = 2
 attr = C, NA
@@ -2417,7 +2438,7 @@ removeongethit = 1
 scale = .25,.25
 ignorehitpause = 0
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = AnimElem = 4
 attr = C, NA
@@ -2452,7 +2473,7 @@ palfx.mul = 128,256,512
 palfx.time = 32
 
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = AnimElem = 5
 attr = C, NA
@@ -2538,16 +2559,22 @@ elem = 8+(animelemtime(8)>=0)
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time = 1
-trigger1 = !(root,stateno = 410)
+triggerall = time > 1 && root,time <= 2
 trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
 value = root,stateno + 5
 
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time = 1
-trigger1 = (root,stateno = [1000,1100]) || (root,stateno = 2000||root,stateno = 2100||root,stateno = 2200) || (root,stateno = 3000)
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
 value = root,stateno + 50
 
 [State 0, explod]
@@ -2649,7 +2676,7 @@ bindtime = -1
 scale = .5,.6
 ignorehitpause = 0
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = AnimElem = 2
 attr = C, NA
@@ -2715,7 +2742,7 @@ trigger1 = time = 1
 value = 600,0+(random%2)
 channel = 0
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = AnimElem = 2
 attr = A, NA
@@ -2833,7 +2860,7 @@ trigger1 = time = 1
 value = 610,0+(random%2)
 channel = 0
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = var(8) = 0
 trigger1 = AnimElem = 2
@@ -2865,7 +2892,7 @@ air.fall = 0
 fall.recover = 0
 down.bounce = 0
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = var(8) > 0
 trigger1 = AnimElem = 2
@@ -2982,7 +3009,7 @@ trigger1 = AnimElem = 2
 value = 3,3
 channel = 1
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = var(8) = 0
 trigger1 = AnimElem = 2
@@ -3014,7 +3041,7 @@ air.fall = 0
 fall.recover = 0
 down.bounce = 0
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = var(8) > 0
 trigger1 = AnimElem = 2
@@ -3330,7 +3357,7 @@ value = 4, 3
 type = explod
 trigger1 = AnimElemTime(1) = 0
 anim = 6051
-pos = 12, -76
+pos = 0, -80
 postype = p1
 sprpriority = 3
 ownpal = 1
@@ -3344,7 +3371,7 @@ persistent = 0
 type = explod
 trigger1 = AnimElemTime(1) = 0
 anim = 6715
-pos = 12, -76
+pos = 0, -80
 postype = p1
 sprpriority = 3
 ownpal = 1
@@ -3452,7 +3479,7 @@ persistent = 0
 type = Varadd
 trigger1 = moveguarded
 trigger1 = var(4) = 80
-var(13) = 1
+fvar(13) = 1
 IgnoreHitPause = 1
 persistent = 0
 
@@ -3603,7 +3630,7 @@ value = 5950
 
 [State 200, ステート変更]
 type = selfstate
-trigger1 = time >= 40
+trigger1 = time >= 45
 value = IfElse(alive, 5110, 5150)
 
 ;---------------------------------------------------------------------------
@@ -3769,7 +3796,7 @@ removeongethit = 1
 pausemovetime = 999999
 supermovetime = 999999
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = AnimElem = 2
 attr = S, NA
@@ -3871,7 +3898,7 @@ trigger1 = random%2 = 0
 value = 800,0+(random%2)
 channel = 0
 
-[State 800, ヒット定義（投げ用）]
+[State 800, Hit（投げ用）]
 type = HitDef
 trigger1 = Animelem = 2
 trigger1 = P2Movetype != H
@@ -4617,25 +4644,23 @@ trigger1 = facing != root,facing
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-triggerall = !(root,stateno = 1000)
-trigger1 = root,stateno = 1000
-trigger2 = root,stateno = 1100
-trigger3 = root,stateno = 1300
-trigger4 = root,stateno = 2000
-trigger5 = root,stateno = 2100
-trigger6 = root,stateno = 2200
-trigger7 = root,stateno = 3000
-trigger8 = root,stateno = 2200
-value = root,stateno + 50
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-trigger1 = (root,stateno = [200, 220]) || (root,stateno = 410)
-value = root,stateno + 5
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
 
 ;/template
 [State 0, anim]
@@ -4647,7 +4672,7 @@ value = 1050
 type = bindtoroot
 trigger1 = prevstateno = 10000
 trigger1 = time <= 1
-pos = 10,0
+pos = 15,0
 facing = 1
 
 [State 0, snd]
@@ -4671,12 +4696,6 @@ bindtime = 1
 removeongethit = 1
 scale = .5,.5
 persistent = 0
-
-[State 0, hitvel]
-type = velset
-trigger1 = anim = 1050
-trigger1 = animelemtime(1) = 0
-x = 3
 
 [State 0, snd]
 type = playsnd
@@ -4740,24 +4759,14 @@ trigger1 = anim = 1050
 trigger1 = animelemtime(2) >= 0
 var(20) = 1
 
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(13) = var(46)
-
-[State 0, end]
-type = varset
-trigger1 = var(46)
-var(46) = 0
-
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = !root,var(7)
 trigger1 = anim = 1050
 trigger1 = AnimElemtime(3) = 0
 attr = S, SA
 animtype  = light
-damage    = ceil(10*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(10*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
+damage    = ceil(6*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(6*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
 guardflag = MA
 pausetime = 0,3
 sparkno = s6000
@@ -4774,7 +4783,7 @@ guard.hittime = 13
 guard.ctrltime = 13
 ground.velocity = -1;ifelse(var(20)<55,-1,-8)
 guard.velocity = -1
-air.velocity = -4, -3.8;; + root,fVar(20)
+air.velocity = -2, -3.4;; + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
 givepower = 1,0
@@ -4785,14 +4794,14 @@ down.bounce = 0
 ground.cornerpush.veloff = 0
 air.cornerpush.veloff = 0
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = root,var(7)
 trigger1 = anim = 1050
 trigger1 = AnimElemtime(3) = 0
 attr = S, SA
 animtype  = light
-damage    = ceil(10*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(1*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
+damage    = ceil(6*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(6*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
 guardflag = MA
 pausetime = 0,3
 sparkno = s6000
@@ -4809,7 +4818,7 @@ guard.hittime = 13
 guard.ctrltime = 13
 ground.velocity = -1;ifelse(var(20)<55,-1,-8)
 guard.velocity = -1
-air.velocity = -4, -3.8;; + root,fVar(20)
+air.velocity = -2, -3.4;; + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
 givepower = 1,0
@@ -4829,17 +4838,16 @@ type = Null
 trigger1 = MoveContact = 1
 trigger1 = root,cond(1,var(4):= 10,0)
 
+; power
 [State 0, end]
 type = varset
-trigger1 = movecontact = 1
+trigger1 = movehit = 1
 var(49) = 1
-ignorehitpause = 1
 
 [State 0, end]
 type = parentvaradd
 trigger1 = var(49)
-var(13) = 1
-ignorehitpause = 1
+fvar(13) = 0.2
 
 [State 0, end]
 type = poweradd
@@ -4851,11 +4859,12 @@ type = varset
 trigger1 = var(49)
 var(49) = 0
 ignorehitpause = 1
+; /power
 
 [State 0, hitvel]
 type = changestate
 trigger1 = anim = 1050
-trigger1 = var(20) >= 60
+trigger1 = var(20) >= 50
 value = 1051
 
 ;---------------------------------------------------------------------------
@@ -4939,25 +4948,23 @@ var(9) = 1
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-triggerall = !(root,stateno = 1000)
-trigger1 = root,stateno = 1000
-trigger2 = root,stateno = 1100
-trigger3 = root,stateno = 1300
-trigger4 = root,stateno = 2000
-trigger5 = root,stateno = 2100
-trigger6 = root,stateno = 2200
-trigger7 = root,stateno = 3000
-trigger8 = root,stateno = 2200
-value = root,stateno + 50
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-trigger1 = (root,stateno = [200, 220]) || (root,stateno = 410)
-value = root,stateno + 5
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
 
 ;/template
 
@@ -4972,6 +4979,11 @@ trigger1 = !time
 value = 1001,0+(random%2)
 channel = 0
 
+[State 0, snd]
+type = playsnd
+trigger1 = animelemtime(2) = 0
+value = 3, 5
+
 [State 0, hitvel]
 type = changeanim
 trigger1 = !time
@@ -4979,17 +4991,17 @@ value = 1053
 
 [State 0, hitvel]
 type = velset
-trigger1 = !time
-x = -8
+trigger1 = time = 6
+x = 5.5
 [State 0, hitvel]
-type = veladd
-trigger1 = animelemtime(2) < 6
-x = 1.4
+type = velmul
+trigger1 = animelemtime(2) >= 0
+trigger2 = movecontact
+x = .9
 [State 0, hitvel]
 type = velset
-trigger1 = animelemtime(2) = 6
+trigger1 = animelemtime(3) = 3
 x = 0
-
 
 [State 0, hitvel]
 type = changeanim
@@ -4997,22 +5009,6 @@ trigger1 = anim = 1053
 trigger1 = movecontact = 1 || movereversed = 1
 value = 1053
 elem = 3
-
-[State 0, hitvel]
-type = velmul
-triggerall = anim = 1053
-trigger1 = animelemtime(3) >= 0
-x = .5
-
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(13) = var(46)
-
-[State 0, end]
-type = varset
-trigger1 = var(46)
-var(46) = 0
 
 [State 100,00]
 type = Afterimage
@@ -5028,20 +5024,20 @@ length = 10
 palinvertall = 1
 ignorehitpause=1
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = !root,var(7)
 trigger1 = anim = 1053
 trigger1 = AnimElem = 2
 attr = S, SA
 animtype  = diagup
-damage    = ceil(50*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(50*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
+damage    = ceil(40*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(40*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
 guardflag = MA
-pausetime = 16,16
+pausetime = 0,16
 sparkno = s6002
 guard.sparkno = s6040
 sparkxy = -10,-70
-hitsound   = s2,2
+hitsound   = s6,4
 guardsound = s10,0
 priority = 4, Hit
 ground.type = low
@@ -5050,9 +5046,9 @@ ground.hittime  = 15
 guard.slidetime = 14
 guard.hittime = 13
 guard.ctrltime = 13
-ground.velocity = -6,-3.5;; + root,fVar(20)
+ground.velocity = -8, -4.5 + root,fVar(20)
 guard.velocity = -2
-air.velocity = -6,-3.5;; + root,fVar(20)
+air.velocity = -8, -4.5 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
 givepower = 25,0
@@ -5068,20 +5064,20 @@ palfx.mul = 128,256,512
 palfx.time = 32
 sprpriority = 2
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = root,var(7)
 trigger1 = anim = 1053
 trigger1 = AnimElem = 2
 attr = S, SA
 animtype  = diagup
-damage = ceil(100*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(100*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
+damage = ceil(40*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(40*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
 guardflag = MA
-pausetime = 21,21
-sparkno = s6002
+pausetime = 0,16
+sparkno = s6003
 guard.sparkno = s6040
 sparkxy = -10,-70
-hitsound   = s2,2
+hitsound   = s6,4
 guardsound = s10,0
 priority = 4, Hit
 ground.type = low
@@ -5090,9 +5086,9 @@ ground.hittime  = 15
 guard.slidetime = 14
 guard.hittime = 13
 guard.ctrltime = 13
-ground.velocity = -6,-3.5;; + root,fVar(20)
+ground.velocity = -8,-6.5 + root,fVar(20)
 guard.velocity = -2
-air.velocity = -6,-3.5;; + root,fVar(20)
+air.velocity = -8,-6.5 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
 givepower = 25,0
@@ -5108,36 +5104,56 @@ palfx.mul = 364,364,128
 palfx.time = 32
 sprpriority = 2
 
-[State 0, var]
-type = parentvaradd
-trigger1 = movecontact = 1
-var(46) = 1
+[State , VarSet]
+type = Null
+trigger1 = MoveContact = 1
+trigger1 = root,cond(1,var(4):= 10,0)
 
-;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[State 0, anim]
+type = changeanim
+trigger1 = var(8) > 0
+value = anim
+elem = animelemno(-1)
+
+[State 0, pos]
+type = posfreeze
+trigger1 = var(8) > 0
+
+[State 0, var]
+type = varset
+trigger1 = movecontact = 1
+var(8) = 16
+ignorehitpause = 1
+persistent = 0
+
+[State 0, var]
+type = varadd
+trigger1 = var(8)
+var(8) = -1
+ignorehitpause = 1
+
+; power
 [State 0, end]
 type = varset
 trigger1 = movehit = 1
 var(49) = 1
-ignorehitpause = 1
-persistent = 0
 
 [State 0, end]
 type = parentvaradd
 trigger1 = var(49)
-var(13) = 1
-ignorehitpause = 1
+fvar(13) = 1
 
 [State 0, end]
 type = poweradd
 trigger1 = var(49)
 value = 50*root,var(5)
 ignorehitpause = 1
-persitent = 0
 [State 0, end]
 type = varset
 trigger1 = var(49)
 var(49) = 0
 ignorehitpause = 1
+; /power
 
 [State 0, explod]
 type = explod
@@ -5199,16 +5215,10 @@ trigger1 = time = 1
 value = 1100,0
 channel = 0
 
-[State 1001]
-type = reversaldef
-trigger1 = animElemtime(2) >= 0
-trigger1 = animElemtime(14) < 0
-reversal.attr = SCA,NA,SA
-pausetime = 0,40
-p1stateno = 1101
-sparkno = s7200
-sparkxy = 25,-10
-hitsound = s7,0
+[State 0, hitvel]
+type = changestate
+trigger1 = helper(10000),stateno = 1151
+value = 1101
 
 [State 1000, end]
 type = ChangeState
@@ -5250,7 +5260,7 @@ ctrl = 1
 ;ここねらってよ！ここ(Stand)
 [Statedef 1150]
 type = U
-movetype = I
+movetype = A
 physics = N
 ctrl = 0
 sprpriority = 2
@@ -5331,31 +5341,30 @@ var(9) = 1
 
 [State 0, turn]
 type = turn
+trigger1 = prevstateno = 10000
 trigger1 = time <= 1
 trigger1 = facing != root,facing
 
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-triggerall = !(root,stateno = 1100)
-trigger1 = root,stateno = 1000
-trigger2 = root,stateno = 1100
-trigger3 = root,stateno = 1300
-trigger4 = root,stateno = 2000
-trigger5 = root,stateno = 2100
-trigger6 = root,stateno = 2200
-trigger7 = root,stateno = 3000
-trigger8 = root,stateno = 2200
-value = root,stateno + 50
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-trigger1 = (root,stateno = [200, 220]) || (root,stateno = 410)
-value = root,stateno + 5
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
 
 ;/template
 
@@ -5366,7 +5375,8 @@ value = 1150
 
 [State 0, btr]
 type = bindtoroot
-trigger1 = 1
+trigger1 = time <= 1
+trigger1 = prevstateno = 10000
 pos = 30,0
 facing = 1
 
@@ -5379,7 +5389,7 @@ ignorehitpause = 1
 [State 0, end]
 type = parentvaradd
 trigger1 = var(49)
-var(13) = 1
+fvar(13) = 1
 ignorehitpause = 1
 
 [State 0, end]
@@ -5425,10 +5435,15 @@ type = playsnd
 trigger1 = time = 68
 value = 12,1
 
-[State 0, hitvel]
-type = changestate
-trigger1 = root,stateno = 1101
-value = 1151
+[State 1001]
+type = reversaldef
+trigger1 = animElemtime(2) >= 0
+reversal.attr = SCA,NA,SA
+pausetime = 0,40
+p1stateno = 1151
+sparkno = s7200
+sparkxy = 25,-10
+hitsound = s7,0
 
 [State 0, hitvel]
 type = changestate
@@ -5522,25 +5537,23 @@ trigger1 = facing != root,facing
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-triggerall = !(root,stateno = 1100)
-trigger1 = root,stateno = 1000
-trigger2 = root,stateno = 1100
-trigger3 = root,stateno = 1300
-trigger4 = root,stateno = 2000
-trigger5 = root,stateno = 2100
-trigger6 = root,stateno = 2200
-trigger7 = root,stateno = 3000
-trigger8 = root,stateno = 2200
-value = root,stateno + 50
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-trigger1 = (root,stateno = [200, 220]) || (root,stateno = 410)
-value = root,stateno + 5
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
 
 ;/template
 
@@ -5594,16 +5607,6 @@ trigger1 = 1
 x = .5
 y = .8
 
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(13) = var(46)
-
-[State 0, end]
-type = varset
-trigger1 = var(46)
-var(46) = 0
-
 [State 0, explod]
 type = explod
 trigger1 = time = 34
@@ -5633,7 +5636,7 @@ removeongethit = 1
 scale = 1,1
 ignorehitpause = 1
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = !root,var(7)
 trigger1 = animelem = 2
@@ -5670,8 +5673,9 @@ palfx.color = 32
 palfx.sinadd = 10,30,60,8
 palfx.mul = 128,256,512
 palfx.time = 32
+sprpriority = 2
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = root,var(7)
 trigger1 = animelem = 2
@@ -5709,6 +5713,7 @@ palfx.color = 32
 palfx.sinadd = 42,42,10,8
 palfx.mul = 364,364,128
 palfx.time = 32
+sprpriority = 2
 
 [state 4100, 1]
 type = envcolor
@@ -5718,31 +5723,28 @@ time = 2
 ignorehitpause = 1
 persistent = 0
 
-;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+; power
 [State 0, end]
 type = varset
 trigger1 = movehit = 1
 var(49) = 1
-ignorehitpause = 1
-persistent = 0
 
 [State 0, end]
 type = parentvaradd
 trigger1 = var(49)
-var(13) = 1
-ignorehitpause = 1
+fvar(13) = 1
 
 [State 0, end]
 type = poweradd
 trigger1 = var(49)
 value = 80*root,var(5)
 ignorehitpause = 1
-persitent = 0
 [State 0, end]
 type = varset
 trigger1 = var(49)
 var(49) = 0
 ignorehitpause = 1
+; /power
 
 [State 0, explod]
 type = explod
@@ -5779,11 +5781,6 @@ value = 12,1
 [State 0, hitvel]
 type = changestate
 trigger1 = !animtime
-value = 10000
-
-[State 0, hitvel]
-type = changestate
-trigger1 = root,stateno != 1101
 value = 10000
 
 ;---------------------------------------------------------------------------
@@ -6051,25 +6048,7 @@ bindtime = -1
 removeongethit = 1
 scale = .45,.6
 
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(13) = var(46)
-ignorehitpause = 1
-
-[State 0, end]
-type = poweradd
-trigger1 = var(46)
-value = 80*root,var(5)
-ignorehitpause = 1
-
-[State 0, end]
-type = varset
-trigger1 = var(46)
-var(46) = 0
-ignorehitpause = 1
-
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = !root,var(7)
 triggerall = anim = 1210
@@ -6103,7 +6082,7 @@ down.bounce = 0
 ground.cornerpush.veloff = 0
 air.cornerpush.veloff = 0
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = root,var(7)
 triggerall = anim = 1210
@@ -6186,19 +6165,16 @@ trigger2 = time > 60
 var(20) = 1
 persistent = 0
 
-;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+; power
 [State 0, end]
 type = varset
 trigger1 = movehit = 1
 var(49) = 1
-ignorehitpause = 1
-persistent = 0
 
 [State 0, end]
 type = parentvaradd
 trigger1 = var(49)
-var(13) = 1
-ignorehitpause = 1
+fvar(13) = 1
 
 [State 0, end]
 type = poweradd
@@ -6210,6 +6186,7 @@ type = varset
 trigger1 = var(49)
 var(49) = 0
 ignorehitpause = 1
+; /power
 
 [State 0, assert]
 type = assertspecial
@@ -6447,25 +6424,23 @@ trigger1 = facing != root,facing
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-triggerall = !(root,stateno = 1300)
-trigger1 = root,stateno = 1000
-trigger2 = root,stateno = 1100
-trigger3 = root,stateno = 1300
-trigger4 = root,stateno = 2000
-trigger5 = root,stateno = 2100
-trigger6 = root,stateno = 2200
-trigger7 = root,stateno = 3000
-trigger8 = root,stateno = 2200
-value = root,stateno + 50
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-trigger1 = (root,stateno = [200, 220]) || (root,stateno = 410)
-value = root,stateno + 5
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
 
 ;/template
 
@@ -6510,7 +6485,7 @@ value = anim
 [State 0, hitvel]
 type = veladd
 trigger1 = animelemtime(2) < 0
-y = .6
+y = .4
 
 [State 0, explod]
 type = explod
@@ -6531,12 +6506,17 @@ ignorehitpause = 0
 [State 0, btr]
 type = velset
 trigger1 = animelemtime(1) = 0
-x = 3
+x = 1.5
+[State 0, turn]
+type = turn
+trigger1 = animelemtime(2) = 0
+trigger1 = p2dist x < -5
 [State 0, btr]
 type = velset
 trigger1 = animelemtime(2) = 0
 x = 4.5 + (var(7) > 0) * 4.5
 y = 0
+
 [State 0, btr]
 type = posset
 trigger1 = animelemtime(2) = 0
@@ -6620,16 +6600,6 @@ type = velset
 trigger1 = animelemtime(5) = 4
 x = 0
 
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(13) = var(46)
-
-[State 0, end]
-type = varset
-trigger1 = var(46)
-var(46) = 0
-
 [State 0, snd]
 type = playsnd
 trigger1 = animelemtime(4) = 0
@@ -6696,23 +6666,28 @@ type = Null
 trigger1 = MoveContact = 1
 trigger1 = root,cond(1,var(4):= 10,0)
 
+; power
 [State 0, end]
 type = varset
-trigger1 = movecontact = 1
+trigger1 = movehit = 1
 var(49) = 1
-ignorehitpause = 1
 
 [State 0, end]
 type = parentvaradd
 trigger1 = var(49)
-var(13) = 1
-ignorehitpause = 1
+fvar(13) = 1
 
+[State 0, end]
+type = poweradd
+trigger1 = var(49)
+value = 80*root,var(5)
+ignorehitpause = 1
 [State 0, end]
 type = varset
 trigger1 = var(49)
 var(49) = 0
 ignorehitpause = 1
+; /power
 
 [State 0, explod]
 type = explod
@@ -6749,7 +6724,6 @@ value = 12,1
 [State 0, hitvel]
 type = changestate
 trigger1 = !animtime
-trigger2 = root,stateno = 3100 || root,stateno = 3200
 value = 10000
 
 ;---------------------------------------------------------------------------
@@ -6800,16 +6774,6 @@ movecamera = 1,0
 type = posadd
 trigger1 = time >= 13
 y = 8
-
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(40) = var(46)
-
-[State 0, end]
-type = varset
-trigger1 = var(46)
-var(46) = 0
 
 [State 0, snd]
 type = playsnd
@@ -6927,7 +6891,7 @@ value = 1
 [State 810, hit]
 type = varadd
 trigger1 = time = 0;!(time%9)
-var(13) = 1
+fvar(13) = 1
 
 [State 0, assert]
 type = assertspecial
@@ -7044,25 +7008,23 @@ trigger1 = facing != root,facing
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-triggerall = !(root,stateno = 1300)
-trigger1 = root,stateno = 1000
-trigger2 = root,stateno = 1100
-trigger3 = root,stateno = 1300
-trigger4 = root,stateno = 2000
-trigger5 = root,stateno = 2100
-trigger6 = root,stateno = 2200
-trigger7 = root,stateno = 3000
-trigger8 = root,stateno = 2200
-value = root,stateno + 50
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-trigger1 = (root,stateno = [200, 220]) || (root,stateno = 410)
-value = root,stateno + 5
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
 
 ;/template
 
@@ -7080,7 +7042,7 @@ value = 1
 [State 810, hit]
 type = parentvaradd
 trigger1 = !time
-var(13) = 1
+fvar(13) = 1
 
 [State 0, var]
 type = stopsnd
@@ -7337,7 +7299,7 @@ value = 5100
 ;---------------------------------------------------------------------------
 ;Specials
 ;---------------------------------------------------------------------------
-;5B
+;5Sk
 [Statedef 2000]
 type    = S
 movetype = A
@@ -7348,16 +7310,116 @@ anim = 1000
 ctrl = 0
 sprpriority = 1
 
+[State 0, var]
+type = varset
+trigger1 = time = 0
+var(23) = 1
+
 [State 0, end]
 type = varadd
 trigger1 = var(7)
 trigger1 = time = 1
+var(58) = 0
+
+[State 1000, end]
+type = ChangeState
+trigger1 = time > 0
+trigger1 = helper(10000),stateno = 10000
+trigger2 = time > 60
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;5Sk > 6Sk
+[Statedef 2010]
+type    = S
+movetype = A
+physics = N
+poweradd = 0
+velset = 0,0
+anim = 1000
+ctrl = 0
+sprpriority = 1
+
+[State 0, count]
+type = varadd
+trigger1 = time = 0
+var(23) = 1
+
+[State 0, end]
+type = varadd
+; trigger1 = var(7)
+; trigger1 = var(20) >= 3
+trigger1 = time = 0
 var(58) = -4
 
 [State 1000, end]
 type = ChangeState
 trigger1 = time > 0
 trigger1 = helper(10000),stateno = 10000
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;5Sk > 8Sk
+[Statedef 2020]
+type    = S
+movetype = A
+physics = N
+poweradd = 0
+velset = 0,0
+anim = 1000
+ctrl = 0
+sprpriority = 1
+
+[State 0, count]
+type = varadd
+trigger1 = time = 0
+var(23) = 1
+
+[State 0, end]
+type = varadd
+; trigger1 = var(7)
+; trigger1 = var(20) >= 3
+trigger1 = time = 0
+var(58) = -4
+
+[State 1000, end]
+type = ChangeState
+trigger1 = time > 0
+trigger1 = helper(10000),stateno = 10000
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;5Sk > 2Sk
+[Statedef 2030]
+type    = S
+movetype = A
+physics = N
+poweradd = 0
+velset = 0,0
+anim = 1000
+ctrl = 0
+sprpriority = 1
+
+[State 0, count]
+type = varadd
+trigger1 = time = 0
+var(20) = 1
+
+[State 0, end]
+type = varadd
+; trigger1 = var(7)
+; trigger1 = var(20) >= 3
+trigger1 = time = 0
+var(58) = -4
+
+[State 1000, end]
+type = ChangeState
+trigger1 = time > 0
+trigger1 = helper(10000),stateno = 10000
+trigger2 = time > 80
 value = 0
 ctrl = 1
 
@@ -7369,6 +7431,7 @@ movetype = A
 physics = N
 ctrl = 0
 sprpriority = 2
+velset = 0,0
 
 ;template---
 [State 0, end]
@@ -7444,33 +7507,36 @@ type = parentvarset
 trigger1 = !time
 var(9) = 1
 
+;[State 0, turn]
+;type = turn
+;trigger1 = time <= 1
+;trigger1 = facing != root,facing
+
 [State 0, turn]
 type = turn
-trigger1 = time <= 1
-trigger1 = facing != root,facing
+trigger1 = animelemtime(4) >= 0
+trigger1 = p2dist x <= -5
 
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-triggerall = !(root,stateno = 2000)
-trigger1 = root,stateno = 1000
-trigger2 = root,stateno = 1100
-trigger3 = root,stateno = 1300
-trigger4 = root,stateno = 2000
-trigger5 = root,stateno = 2100
-trigger6 = root,stateno = 2200
-trigger7 = root,stateno = 3000
-trigger8 = root,stateno = 2200
-value = root,stateno + 50
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-trigger1 = (root,stateno = [200, 220]) || (root,stateno = 410)
-value = root,stateno + 5
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
 
 ;/template
 [State 0, end]
@@ -7492,13 +7558,149 @@ channel = 0
 [State 0, anim]
 type = changeanim
 trigger1 = !time
-value = 2050 + (var(7) = 1) * 5
+value = 2050
 
 [State 0, btr]
 type = bindtoroot
 trigger1 = time <= 1
-pos = 15,0
+pos = 30,0
 facing = 1
+
+[State 0, hitvel]
+type = changestate
+trigger1 = !animtime
+value = 2060
+
+;---------------------------------------------------------------------------
+;5Sk > 46Sk (Stand)
+[Statedef 2060]
+type = U
+movetype = A
+physics = N
+ctrl = 0
+sprpriority = 2
+velset = 0, 0
+
+;template---
+[State 0, end]
+type = varset
+trigger1 = time = 0
+var(8) = 0
+
+[State 0, snd]
+type = playsnd
+trigger1 = !time
+trigger1 = prevstateno = 10000
+value = 12,0
+
+[State 3001, Width]
+type = Width
+trigger1 = 1
+edge = 5,0
+
+[State 10000, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[State 10000, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 1
+
+[State 0, state]
+type = statetypeset
+trigger1 = parent,statetype = S
+statetype = S
+ignorehitpause = 1
+
+[State 0, state]
+type = statetypeset
+trigger1 = parent,statetype = C
+statetype = C
+ignorehitpause = 1
+
+[State 0, state]
+type = statetypeset
+trigger1 = parent,statetype = A
+statetype = A
+ignorehitpause = 1
+
+[State 0, assert]
+type = assertspecial
+trigger1 = 1
+flag = Noshadow
+ignorehitpause = 1
+
+[State 0, nhb]
+type = nothitby
+trigger1 = 1
+value = ,AT
+
+[State 10000, HitOverRide] 
+type = HitOverRide
+trigger1 = 1
+slot = 0
+stateno = 9500
+attr = SCA,NA,SA,HA,NP,SP,HP
+time = -1
+
+[State 0, end]
+type = changestate
+trigger1 = root,movetype = H
+value = 9505
+
+[State 0, var]
+type = parentvarset
+trigger1 = !time
+var(9) = 1
+
+;[State 0, turn]
+;type = turn
+;trigger1 = time <= 1
+;trigger1 = facing != root,facing
+
+[State 0, end]
+type = changestate
+triggerall = root,movetype != H
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
+[State 0, end]
+type = changestate
+triggerall = root,movetype != H
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
+
+;/template
+[State 0, end]
+type = varset
+trigger1 = !time
+var(7) = 0
+[State 0, end]
+type = varset
+trigger1 = !time
+trigger1 = root,var(7)
+var(7) = 1
+
+[State 0, turn]
+type = turn
+trigger1 = animelemtime(2) >= 0
+trigger1 = p2dist x <= -5
+
+[State 0, anim]
+type = changeanim
+trigger1 = !time
+value = 2060
 
 [State 0, snd]
 type = playsnd
@@ -7518,124 +7720,40 @@ sprpriority = 3
 ownpal = 1
 bindtime = -1
 removeongethit = 1
-scale = .5, .5
+scale = .5, .25
 persistent = 0
 ignorehitpause = 0
 
-;びりびり
-[State 0, explod]
-type = explod
-trigger1 = animelemtime(2) = 0
-anim = 21000
-id = 21000
-facing = 1
-postype = p1
-pos = 0,-55
-sprpriority = 3
-ownpal = 1
-bindtime = 1
-removeongethit = 1
-scale = .8, 1
-ignorehitpause = 0
-
-[State 0, explod]
-type = explod
-trigger1 = !var(7)
-trigger1 = animelemtime(4) < 0
-trigger1 = time % 8 = 0
-anim = 227
-id = 227
-facing = 1
-postype = p1
-pos = 0,-45-(random%20)
-angle = random
-sprpriority = 2
-ownpal = 1
-vel = 0,0
-scale = .5,.5
-ignorehitpause = 0
-
-[State 0, explod]
-type = explod
-trigger1 = var(7)
-trigger1 = animelemtime(8) < 0
-trigger1 = time % 4 = 0
-anim = 227
-id = 227
-facing = 1
-postype = p1
-pos = 0,-45-(random%20)
-angle = random
-sprpriority = 2
-ownpal = 1
-vel = 0,0
-scale = .5,.5
-ignorehitpause = 0
-[State 0, explod]
-type = explod
-trigger1 = var(7)
-trigger1 = animelemtime(8) = 0
-anim = 227
-id = 227
-facing = 1
-postype = p1
-pos = 0,-55
-sprpriority = 2
-ownpal = 1
-vel = 0,0
-scale = .75, .75
-ignorehitpause = 0
-
-[State 4550, 0]
-type = ModifyExplod
-trigger1 = numexplod(21000) > 0
-scale = .8,1/(time*0.1)
-id = 21000
-
 [State 0, hitvel]
 type = velset
-trigger1 = anim = [2050, 2055]
 trigger1 = animelemtime(2) = 1
-x = 12
-
-;バゴーン
-[State 0, snd]
-type = playsnd
-trigger1 = animelemtime(2) = 1
-value = 2010,0
+x = IfElse(root,var(7), 26, 13)
 
 [State 0, hitvel]
 type = velmul
-trigger1 = vel x
-x = .95
+trigger1 = movecontact
+x = .8
 
 [State 0, hitvel]
-type = velset
-trigger1 = !var(7)
-trigger1 = animelem = 4
-trigger2 = var(7)
-trigger2 = animelem = 9
+type = Velset
+trigger1 = animelem = 3
 x = 0
+y = 0
 
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(13) = var(46)
+[State 10000, PlayerPush]
+type = PlayerPush
+trigger1 = animelemtime(2) >= 1
+trigger1 = animelemtime(3) < 0
+value = 0
 
-[State 0, end]
-type = varset
-trigger1 = var(46)
-var(46) = 0
-
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
-triggerall = !var(7)
-trigger1 = AnimElem = 2
+trigger1 = Animelem = 2
 attr = S, SA
-animtype  = diagup
-damage    = ceil(73*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(73*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
+animtype  = Light
+damage = ceil(45*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(45*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
 guardflag = MA
-pausetime = 0,16
+pausetime = 0, 1
 sparkno = s6002
 guard.sparkno = s6040
 sparkxy = -10,-70
@@ -7645,104 +7763,44 @@ priority = 4, Hit
 ground.type = low
 ground.slidetime = 15
 ground.hittime  = 15
-ground.velocity = -6,-4.5 + root,fVar(20)
-guard.velocity = -2
-air.velocity = -6,-4.5 + root,fVar(20)
+ground.velocity = -0.5, -5.5 + root,fVar(20)
+guard.velocity = 0
+air.velocity = -0.5, -5.5 + root,fVar(20)
 yaccel = 0.45
 getpower = 0,0
-givepower = 40, 0
-fall = 1
+givepower = 10,0
+fall = 1 ;(root,var(21) > 0 || !root,var(7))
 air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 0
 down.bounce = 0
 ground.cornerpush.veloff = -6
 air.cornerpush.veloff = -6
+id = stateno
+sprpriority = 2
 palfx.color = 32
 palfx.sinadd = 10,30,60,8
 palfx.mul = 128,256,512
 palfx.time = 32
-sprpriority = 2
 
-;MAX時
-[State 200, ヒット定義]
-type = HitDef
-triggerall = var(7)
-trigger1 = Animelemtime(2) = 0
-trigger2 = Animelemtime(3) = 0
-trigger3 = Animelemtime(4) = 0
-trigger4 = Animelemtime(5) = 0
-trigger5 = Animelemtime(6) = 0
-attr = S, SA
-animtype  = hard
-damage = ceil(6*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(6*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
-guardflag = MA
-pausetime = 0,3
-sparkno = s6000
-guard.sparkno = s6040
-sparkxy = -10,-55-(random%30)
-hitsound   = s2,0
-guardsound = s10,0
-priority = 4, Hit
-ground.type = low
-ground.slidetime = 15
-ground.hittime  = 15
-ground.velocity = -3
-guard.velocity = -2
-air.velocity = -3,-1.5 + root,fVar(20)
-yaccel = 0.45
-getpower = 0,0
-givepower = 5,0
-fall = 0
-air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
-fall.recover = 0
-down.bounce = 0
-ground.cornerpush.veloff = 0
-palfx.sinadd = 42,42,10,8
-palfx.mul = 364,364,128
-palfx.time = 32
-id = 1200
-sprpriority = 2
+; [State 0, pos]
+; type = targetstate
+; triggerall = animelemtime(2) <= 5
+; ;triggerall = root,var(7)
+; triggerall = !root,var(21)
+; trigger1 = numtarget(2060)
+; trigger1 = target(2060),alive
+; trigger1 = target(2060),statetype != A
+; trigger1 = movehit = 1
+; value = 1260
+; id = 2060
 
-[State 200, ヒット定義]
-type = HitDef
-triggerall = var(7)
-trigger1 = Animelem = 8
-attr = S, SA
-animtype  = diagup
-damage = ceil(30*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(30*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
-guardflag = MA
-pausetime = 0, 24
-sparkno = s6002
-guard.sparkno = s6040
-sparkxy = -10,-70
-hitsound   = s2,2
-guardsound = s10,0
-priority = 4, Hit
-ground.type = low
-ground.slidetime = 15
-ground.hittime  = 15
-ground.velocity = -4,-4.5 + root,fVar(20)
-guard.velocity = -2
-air.velocity = -6,-4.5 + root,fVar(20)
-yaccel = 0.45
-getpower = 0,0
-givepower = 10,0
-fall = 1
-air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
-fall.recover = 0
-down.bounce = 0
-ground.cornerpush.veloff = -6
-air.cornerpush.veloff = -6
-palfx.sinadd = 42,42,10,8
-palfx.mul = 364,364,128
-palfx.time = 32
-id = stateno
-sprpriority = 2
-
-[State , VarSet]
-type = Null
-trigger1 = MoveContact = 1
-trigger1 = root,cond(1,var(4):= 5,0)
+; [State 0, pos]
+; type = parentvarset
+; trigger1 = numtarget(2060)
+; trigger1 = target(2060),alive
+; trigger1 = target(2060),statetype != A
+; trigger1 = movehit = 1
+; var(21) = 1
 
 [State 0, anim]
 type = changeanim
@@ -7756,29 +7814,556 @@ trigger1 = var(8) > 0
 
 [State 0, var]
 type = varset
-trigger1 = !var(7)
 trigger1 = movecontact = 1
-var(8) = 16
+var(8) = 1
 ignorehitpause = 1
 persistent = 0
 
 [State 0, var]
-type = varset
-trigger1 = var(7)
-trigger1 = movecontact = 1
-trigger1 = Animelemtime(2) >= 0
-trigger1 = Animelemtime(8) < 0
-var(8) = 3
+type = varadd
+trigger1 = var(8)
+var(8) = -1
 ignorehitpause = 1
+
+; power
+[State 0, end]
+type = varset
+trigger1 = movehit = 1
+var(49) = 1
+
+[State 0, end]
+type = parentvaradd
+trigger1 = var(49)
+fvar(13) = 1
+
+[State 0, end]
+type = poweradd
+trigger1 = var(49)
+value = 80*root,var(5)
+ignorehitpause = 1
+[State 0, end]
+type = varset
+trigger1 = var(49)
+var(49) = 0
+ignorehitpause = 1
+; /power
+
+[State 0, hitvel]
+type = changestate
+trigger1 = !animtime
+value = 2090
+
+;---------------------------------------------------------------------------
+;5Sk > 2Sk
+[Statedef 2070]
+type = U
+movetype = A
+physics = N
+ctrl = 0
+sprpriority = 2
+anim = 2070
+velset = 0, 0
+
+;template---
+[State 0, snd]
+type = playsnd
+trigger1 = !time
+trigger1 = prevstateno = 10000
+value = 12,0
+
+[State 3001, Width]
+type = Width
+trigger1 = 1
+edge = 5,0
+
+[State 10000, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[State 10000, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 1
+
+[State 0, state]
+type = statetypeset
+trigger1 = parent,statetype = S
+statetype = S
+ignorehitpause = 1
+
+[State 0, state]
+type = statetypeset
+trigger1 = parent,statetype = C
+statetype = C
+ignorehitpause = 1
+
+[State 0, state]
+type = statetypeset
+trigger1 = parent,statetype = A
+statetype = A
+ignorehitpause = 1
+
+[State 0, assert]
+type = assertspecial
+trigger1 = 1
+flag = Noshadow
+ignorehitpause = 1
+
+[State 0, nhb]
+type = nothitby
+trigger1 = 1
+value = ,AT
+
+[State 10000, HitOverRide] 
+type = HitOverRide
+trigger1 = 1
+slot = 0
+stateno = 9500
+attr = SCA,NA,SA,HA,NP,SP,HP
+time = -1
+
+[State 0, end]
+type = changestate
+trigger1 = root,movetype = H
+value = 9505
+
+[State 0, var]
+type = parentvarset
+trigger1 = !time
+var(9) = 1
+
+;[State 0, turn]
+;type = turn
+;trigger1 = time <= 1
+;trigger1 = facing != root,facing
+
+[State 0, end]
+type = changestate
+triggerall = root,movetype != H
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
+[State 0, end]
+type = changestate
+triggerall = root,movetype != H
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
+
+;/template
+
+[State , VarSet]
+type = Null
+trigger1 = time = 0
+trigger1 = root,cond(1,var(4):= 0,0)
+
+[State 0, snd]
+type = playsnd
+trigger1 = !time
+value = 2020, 0
+channel = 0
+
+[State 0, hitvel]
+type = velset
+trigger1 = animelemtime(1) = 1
+x = 4.5
+[State 0, hitvel]
+type = velmul
+trigger1 = p2dist x < 5
+x = .8
+[State 0, hitvel]
+type = velset
+trigger1 = animelemtime(2) = 1
+x = 0.5
+y = -9
+[State 0, hitvel]
+type = veladd
+trigger1 = !var(8)
+trigger1 = animelemtime(2) >= 1
+y = .4
+
+[State 200, Hit]
+type = HitDef
+trigger1 = AnimElem = 2
+attr = A, SA
+animtype  = up
+damage    = ceil(45*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(45*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
+guardflag = MA
+pausetime = 0,11
+sparkno = s6002
+guard.sparkno = s6040
+sparkxy = -10,-50
+hitsound   = s2,2
+guardsound = s10,0
+priority = 4, Hit
+ground.type = low
+ground.slidetime = 15
+ground.hittime  = 15
+guard.slidetime = 14
+guard.hittime = 13
+guard.ctrltime = 13
+ground.velocity = -0.5, -8 + root,fVar(20)
+guard.velocity = -2
+air.velocity = -0.5, -8 + root,fVar(20)
+yaccel = 0.45
+getpower = 0,0
+givepower = 25,0
+fall = 1
+air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
+fall.recover = 0
+down.bounce = 0
+ground.cornerpush.veloff = -6
+air.cornerpush.veloff = -6
+palfx.color = 32
+palfx.sinadd = 10,30,60,8
+palfx.mul = 128,256,512
+palfx.time = 32
+sprpriority = 2
+
+[State 0, anim]
+type = changeanim
+trigger1 = var(8) > 0
+value = anim
+elem = animelemno(-1)
+
+[State 0, pos]
+type = posfreeze
+trigger1 = var(8) > 0
 
 [State 0, var]
 type = varset
-trigger1 = var(7)
 trigger1 = movecontact = 1
-trigger1 = AnimelemTime(8) >= 0
-var(8) = 24
+var(8) = 13
 ignorehitpause = 1
-persistent = 0
+
+[State 0, var]
+type = varadd
+trigger1 = var(8)
+var(8) = -1
+ignorehitpause = 1
+
+; power
+[State 0, end]
+type = varset
+trigger1 = movehit = 1
+var(49) = 1
+
+[State 0, end]
+type = parentvaradd
+trigger1 = var(49)
+fvar(13) = 1
+
+[State 0, end]
+type = poweradd
+trigger1 = var(49)
+value = 10*root,var(5)
+ignorehitpause = 1
+[State 0, end]
+type = varset
+trigger1 = var(49)
+var(49) = 0
+ignorehitpause = 1
+; /power
+
+[State 0, end]
+type = changestate
+trigger1 = !animtime
+value = 2090
+
+;---------------------------------------------------------------------------
+;5Sk > 8Sk
+[Statedef 2080]
+type = U
+movetype = A
+physics = N
+ctrl = 0
+sprpriority = 2
+anim = 2080
+
+;template---
+[State 0, snd]
+type = playsnd
+trigger1 = !time
+trigger1 = prevstateno = 10000
+value = 12,0
+
+[State 3001, Width]
+type = Width
+trigger1 = 1
+edge = 5,0
+
+[State 10000, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[State 10000, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 1
+
+[State 0, state]
+type = statetypeset
+trigger1 = parent,statetype = S
+statetype = S
+ignorehitpause = 1
+
+[State 0, state]
+type = statetypeset
+trigger1 = parent,statetype = C
+statetype = C
+ignorehitpause = 1
+
+[State 0, state]
+type = statetypeset
+trigger1 = parent,statetype = A
+statetype = A
+ignorehitpause = 1
+
+[State 0, assert]
+type = assertspecial
+trigger1 = 1
+flag = Noshadow
+ignorehitpause = 1
+
+[State 0, nhb]
+type = nothitby
+trigger1 = 1
+value = ,AT
+
+[State 10000, HitOverRide] 
+type = HitOverRide
+trigger1 = 1
+slot = 0
+stateno = 9500
+attr = SCA,NA,SA,HA,NP,SP,HP
+time = -1
+
+[State 0, end]
+type = changestate
+trigger1 = root,movetype = H
+value = 9505
+
+[State 0, var]
+type = parentvarset
+trigger1 = !time
+var(9) = 1
+
+;[State 0, turn]
+;type = turn
+;trigger1 = time <= 1
+;trigger1 = facing != root,facing
+
+[State 0, end]
+type = changestate
+triggerall = root,movetype != H
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
+[State 0, end]
+type = changestate
+triggerall = root,movetype != H
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
+
+;/template
+
+[State 0, finish]
+type = varset
+trigger1 = time = 0
+var(20) = IFElse(pos y < -5, 1, 0)
+
+[State , VarSet]
+type = Null
+trigger1 = time = 0
+trigger1 = root,cond(1,var(4):= 0,0)
+
+[State 0, snd]
+type = playsnd
+trigger1 = !time
+value = 2030, 0
+channel = 0
+
+[State 0, hitvel]
+type = velset
+trigger1 = time = 1
+x = 3
+y = -12
+
+[State 0, hitvel]
+type = velmul
+trigger1 = p2dist x < 5
+x = .8
+
+; 発射点y<0なら少し発生早く
+[State 0, finish]
+type = changeanim
+trigger1 = time = IfElse(var(20) = 1, 6, 10)
+value = 2081
+
+[State 0, hitvel]
+type = velset
+trigger1 = anim = 2081
+trigger1 = animelemtime(1) = 0
+x = 0
+y = 0
+
+[State 0, hitvel]
+type = velset
+trigger1 = anim = 2081
+trigger1 = animelemtime(3) = 1
+x = 1.4
+y = 8
+
+[State 0, finish]
+type = changeanim
+trigger1 = anim = 2081
+trigger1 = vel y > 0 && pos y >= 0
+value = 2082
+
+[State 0, hitvel]
+type = velset
+trigger1 = anim = 2082 && animelemtime(1) = 1
+x = 0
+y = 0
+[State 0, hitvel]
+type = posset
+trigger1 = anim = 2082 && animelemtime(1) = 1
+y = 0
+
+[State 200, Hit]
+type = HitDef
+triggerall = anim = 2081
+trigger1 = AnimElem = 4 || AnimTime = 0
+attr = A, SA
+animtype  = light
+damage    = ceil(7*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(7*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
+hitflag = MAFD
+guardflag = HA
+pausetime = 0,2
+sparkno = s6000
+guard.sparkno = s6040
+sparkxy = 0,-30
+hitsound   = s6, 0
+guardsound = s10, 0
+priority = 4, Hit
+ground.type = low
+ground.slidetime = 15
+ground.hittime  = 15
+guard.slidetime = 14
+guard.hittime = 13
+guard.ctrltime = 13
+ground.velocity = -1.2, 0;; + root,fVar(20)
+guard.velocity = -2
+air.velocity = -1.2, 8;; + root,fVar(20)
+fall.xvelocity = -4.2
+fall.yvelocity = -11
+yaccel = 0.45
+getpower = 0,0
+givepower = 2,0
+fall = 1
+air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
+fall.recover = 0
+down.bounce = 0
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+palfx.color = 32
+palfx.sinadd = 10,30,60,8
+palfx.mul = 128,256,512
+palfx.time = 32
+sprpriority = 2
+p2facing = 1
+id = stateno
+
+[State 200, Hit]
+type = HitDef
+trigger1 = anim = 2082
+trigger1 = AnimElem = 1
+attr = A, SA
+animtype  = hard
+damage    = ceil(15*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(15*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
+hitflag = MAFD
+guardflag = HA
+pausetime = 0,16
+sparkno = s6002
+guard.sparkno = s6040
+sparkxy = 0,-30
+hitsound   = s6, 3
+guardsound = s10, 0
+priority = 4, Hit
+ground.type = low
+ground.slidetime = 15
+ground.hittime  = 15
+guard.slidetime = 14
+guard.hittime = 13
+guard.ctrltime = 13
+ground.velocity = -5.5, -1.5;; + root,fVar(20)
+guard.velocity = -2
+air.velocity = -5.5, -1.5;; + root,fVar(20)
+yaccel = 0.45
+getpower = 0,0
+givepower = 25,0
+fall = 1
+air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
+fall.recover = 0
+down.bounce = 0
+ground.cornerpush.veloff = -6
+air.cornerpush.veloff = -6
+palfx.color = 32
+palfx.sinadd = 10,30,60,8
+palfx.mul = 128,256,512
+palfx.time = 32
+sprpriority = 2
+p2facing = 1
+id = stateno
+
+[State 3001, 6]
+type = targetState
+trigger1 = numTarget(stateno)
+trigger1 = movehit
+value = 5113
+id = stateno
+ignorehitpause = 1
+
+;[State , VarSet]
+;type = Null
+;trigger1 = anim = 2081
+;trigger1 = AnimElemtime(3) >= 0
+;trigger1 = root,cond(1,var(4):= 5,0)
+
+[State 0, anim]
+type = changeanim
+trigger1 = var(8) > 0
+value = anim
+elem = animelemno(-1)
+
+[State 0, pos]
+type = posfreeze
+trigger1 = var(8) > 0
+
+[State 0, var]
+type = varset
+trigger1 = movecontact = 1
+var(8) = ifElse(anim = 2081, 3, 16)
+ignorehitpause = 1
 
 [State 0, var]
 type = varadd
@@ -7796,14 +8381,13 @@ ignorehitpause = 1
 [State 0, end]
 type = parentvaradd
 trigger1 = var(49)
-var(13) = 1
+fvar(13) = 0.2
 ignorehitpause = 1
-persistent = 0
 
 [State 0, end]
 type = poweradd
 trigger1 = var(49)
-value = ifelse(var(7),10, 80)*root,var(5)
+value = ifElse(anim = 2081, 5, 50)
 ;ignorehitpause = 1
 [State 0, end]
 type = varset
@@ -7811,8 +8395,136 @@ trigger1 = var(49)
 var(49) = 0
 ;ignorehitpause = 1
 
+[State 0, end]
+type = changestate
+trigger1 = anim = 2082
+trigger1 = !animtime
+value = 2090
+
+;---------------------------------------------------------------------------
+;5Sk Wait
+[Statedef 2090]
+type = U
+movetype = I
+physics = N
+ctrl = 0
+sprpriority = 2
+anim = 2090
+
+;template---
+[State 0, snd]
+type = playsnd
+trigger1 = !time
+trigger1 = prevstateno = 10000
+value = 12,0
+
+[State 3001, Width]
+type = Width
+trigger1 = 1
+edge = 5,0
+
+[State 10000, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[State 10000, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 1
+
+[State 0, state]
+type = statetypeset
+trigger1 = parent,statetype = S
+statetype = S
+ignorehitpause = 1
+
+[State 0, state]
+type = statetypeset
+trigger1 = parent,statetype = C
+statetype = C
+ignorehitpause = 1
+
+[State 0, state]
+type = statetypeset
+trigger1 = parent,statetype = A
+statetype = A
+ignorehitpause = 1
+
+[State 0, assert]
+type = assertspecial
+trigger1 = 1
+flag = Noshadow
+ignorehitpause = 1
+
+[State 0, nhb]
+type = nothitby
+trigger1 = 1
+value = ,AT
+
+[State 10000, HitOverRide] 
+type = HitOverRide
+trigger1 = 1
+slot = 0
+stateno = 9500
+attr = SCA,NA,SA,HA,NP,SP,HP
+time = -1
+
+[State 0, end]
+type = changestate
+trigger1 = root,movetype = H
+value = 9505
+
+[State 0, var]
+type = parentvarset
+trigger1 = !time
+var(9) = 1
+
+;[State 0, turn]
+;type = turn
+;trigger1 = time <= 1
+;trigger1 = facing != root,facing
+
+[State 0, end]
+type = changestate
+triggerall = root,movetype != H
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
+[State 0, end]
+type = changestate
+triggerall = root,movetype != H
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
+
+;/template
+
+[State , VarSet]
+type = Null
+trigger1 = root,cond(1,var(4):= 5,0)
+
+[State 0, turn]
+type = turn
+trigger1 = p2dist x <= -5
+
+[State 0, mul]
+type = velmul
+trigger1 = 1
+x = 0.9
+y = 0.9
+
 [State 0, explod]
 type = explod
+trigger1 = anim = 12081
 trigger1 = animtime = -1
 anim = 7201
 id = 7201
@@ -7827,6 +8539,7 @@ supermovetime = 999999
 
 [State 0, explod]
 type = explod
+trigger1 = anim = 12081
 trigger1 = animtime = -1
 anim = 8201
 id = 8201
@@ -7843,7 +8556,7 @@ type = playsnd
 trigger1 = !animtime
 value = 12,1
 
-[State 0, hitvel]
+[State 0, end]
 type = changestate
 trigger1 = !animtime
 value = 10000
@@ -7959,25 +8672,23 @@ trigger1 = facing != root,facing
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-triggerall = !(root,stateno = 2100)
-trigger1 = root,stateno = 1000
-trigger2 = root,stateno = 1100
-trigger3 = root,stateno = 1300
-trigger4 = root,stateno = 2000
-trigger5 = root,stateno = 2100
-trigger6 = root,stateno = 2200
-trigger7 = root,stateno = 3000
-trigger8 = root,stateno = 2200
-value = root,stateno + 50
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-trigger1 = (root,stateno = [200, 220]) || (root,stateno = 410)
-value = root,stateno + 5
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
 
 ;/template
 [State 0, end]
@@ -8176,17 +8887,7 @@ removetime = 18
 scale = ifelse(var(7),1,.5),.25
 ignorehitpause = 0
 
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(13) = var(46)
-
-[State 0, end]
-type = varset
-trigger1 = var(46)
-var(46) = 0
-
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = !var(7)
 trigger1 = AnimElemtime(9) >= 0
@@ -8225,7 +8926,7 @@ palfx.time = 32
 sprpriority = 2
 
 ;MAX時
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = var(7)
 trigger1 = AnimElemtime(9) >= 0
@@ -8264,7 +8965,7 @@ palfx.time = 32
 sprpriority = 2
 id = 2100
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = var(7)
 trigger1 = animelem = 10
@@ -8327,31 +9028,28 @@ trigger1 = movehit = 3;1
 var(21) = 1
 
 
-;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+; power
 [State 0, end]
 type = varset
 trigger1 = movehit = 1
 var(49) = 1
-ignorehitpause = 1
-;persistent = 0
 
 [State 0, end]
 type = parentvaradd
 trigger1 = var(49)
-var(13) = 1
-ignorehitpause = 1
-persistent = 0
+fvar(13) = 0.3
 
 [State 0, end]
 type = poweradd
 trigger1 = var(49)
 value = 15*root,var(5)
-;ignorehitpause = 1
+ignorehitpause = 1
 [State 0, end]
 type = varset
 trigger1 = var(49)
 var(49) = 0
-;ignorehitpause = 1
+ignorehitpause = 1
+; /power
 
 [State 0, explod]
 type = explod
@@ -8567,25 +9265,23 @@ trigger1 = facing != root,facing
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-triggerall = !(root,stateno = 2200)
-trigger1 = root,stateno = 1000
-trigger2 = root,stateno = 1100
-trigger3 = root,stateno = 1300
-trigger4 = root,stateno = 2000
-trigger5 = root,stateno = 2100
-trigger6 = root,stateno = 2200
-trigger7 = root,stateno = 3000
-trigger8 = root,stateno = 2200
-value = root,stateno + 50
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-trigger1 = (root,stateno = [200, 220]) || (root,stateno = 410)
-value = root,stateno + 5
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
 
 ;/template
 [State 200, v]
@@ -8701,22 +9397,12 @@ removetime = 26
 scale = .5,.5
 ignorehitpause = 0
 
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(13) = var(46)
-
-[State 0, end]
-type = varset
-trigger1 = var(46)
-var(46) = 0
-
 [State 0, turn]
 type = turn
 trigger1 = AnimElem = 3
 trigger1 = P2Dist x < 0
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = !var(7)
 trigger1 = AnimElemtime(3) >= 0
@@ -8756,7 +9442,7 @@ palfx.time = 32
 sprpriority = 2
 p2facing = 1
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = !var(7)
 trigger1 = AnimElemtime(4) = 0
@@ -8794,7 +9480,7 @@ palfx.time = 32
 sprpriority = 2
 p2facing = 1
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = var(7)
 trigger1 = AnimElemtime(3) >= 0
@@ -8833,7 +9519,7 @@ palfx.mul = 364,364,128
 palfx.time = 32
 sprpriority = 2
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 triggerall = var(7)
 trigger1 = AnimElemtime(4) = 0
@@ -8930,30 +9616,28 @@ trigger1 = target(1251),statetype != A
 trigger1 = movehit = 1
 var(21) = 1
 
+; power
 [State 0, end]
 type = varset
 trigger1 = movehit = 1
 var(49) = 1
-ignorehitpause = 1
-;persistent = 0
 
 [State 0, end]
 type = parentvaradd
 trigger1 = var(49)
-var(13) = 1
-ignorehitpause = 1
-persistent = 0
+fvar(13) = 0.2
 
 [State 0, end]
 type = poweradd
 trigger1 = var(49)
-value = IfElse(var(7) = 0, 20, 10)*root,var(5)
-;ignorehitpause = 1
+value = ifelse(var(7),20, 10)*root,var(5)
+ignorehitpause = 1
 [State 0, end]
 type = varset
 trigger1 = var(49)
 var(49) = 0
-;ignorehitpause = 1
+ignorehitpause = 1
+; /power
 
 [State 0, explod]
 type = explod
@@ -9040,7 +9724,6 @@ mul = 168-time,168-time,128-time
 time = 1
 ignorehitpause = 1
 
-
 [State 0, super]
 type = superpause
 trigger1 = time = 2
@@ -9056,7 +9739,7 @@ type = explod
 trigger1 = time = 2
 anim = 7010
 id = 7010
-pos = 35,-70
+pos = 5,-70
 postype = p1
 sprpriority = 3
 ownpal = 1
@@ -9079,8 +9762,9 @@ type = width
 trigger1 = helper(10000),stateno = [3060,3061]
 edge = 120,-120
 
-[State 810, 音を鳴らす]
+[State 810, Inv]
 type = nothitby
+trigger1 = var(23) = 0
 trigger1 = time <= 72
 trigger2 = helper(10000),stateno = [3060,3062]
 value = SCA
@@ -9193,31 +9877,30 @@ var(9) = 1
 
 [State 0, turn]
 type = turn
+trigger1 = prevstateno = 10000
 trigger1 = time <= 1
 trigger1 = facing != root,facing
 
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-triggerall = !(root,stateno = 3000)
-trigger1 = root,stateno = 1000
-trigger2 = root,stateno = 1100
-trigger3 = root,stateno = 1300
-trigger4 = root,stateno = 2000
-trigger5 = root,stateno = 2100
-trigger6 = root,stateno = 2200
-trigger7 = root,stateno = 3000
-trigger8 = root,stateno = 2200
-value = root,stateno + 50
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
+
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
-triggerall = root,time >= 1
-trigger1 = (root,stateno = [200, 220]) || (root,stateno = 410)
-value = root,stateno + 5
-ignorehitpause = 1
+triggerall = time > 1 && root,time <= 2
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
 
 ;/template
 
@@ -9242,12 +9925,14 @@ value = 12,0
 
 [State 0, btr]
 type = bindtoroot
+trigger1 = prevstateno = 10000
 trigger1 = time <= 1
 pos = 30,0
 facing = 1
 
-[State 810, 音を鳴らす]
+[State 810, inv]
 type = nothitby
+trigger1 = root,var(23) = 0
 trigger1 = animelemtime(4) < 0
 value = SCA
 ignorehitpause = 1
@@ -9284,16 +9969,6 @@ trigger1 = animelemtime(2) >= 15
 x = .6
 y = .6
 ignorehitpause = 1
-
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(13) = var(46)
-
-[State 0, end]
-type = varset
-trigger1 = var(46)
-var(46) = 0
 
 [State 0, hit]
 type = hitdef
@@ -9401,28 +10076,28 @@ trigger1 = numtarget(3050)
 trigger1 = target(3050),stateno = 3070
 value = 3060
 
+; power
 [State 0, end]
 type = varset
 trigger1 = movehit = 1
 var(49) = 1
-ignorehitpause = 1
 
 [State 0, end]
 type = parentvaradd
 trigger1 = var(49)
-var(13) = 1
-ignorehitpause = 1
+fvar(13) = 1
 
 [State 0, end]
 type = poweradd
 trigger1 = var(49)
-value = 0
+value = 0*root,var(5)
 ignorehitpause = 1
 [State 0, end]
 type = varset
 trigger1 = var(49)
 var(49) = 0
 ignorehitpause = 1
+; /power
 
 [State 0, explod]
 type = explod
@@ -9534,16 +10209,6 @@ type = posadd
 trigger1 = animelemtime(2) >= 3
 trigger1 = animelemtime(3) < 0
 y = 8
-
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(40) = var(46)
-
-[State 0, end]
-type = varset
-trigger1 = var(46)
-var(46) = 0
 
 [State 0, snd]
 type = playsnd
@@ -9709,7 +10374,7 @@ value = 1
 [State 810, 掴んだ相手のライフ増減]
 type = varadd
 trigger1 = !(time%6)
-var(13) = 1
+fvar(13) = 1
 
 [State 0, var]
 type = velmul
@@ -9774,7 +10439,7 @@ value = 1
 [State 810, 掴んだ相手のライフ増減]
 type = varadd
 trigger1 = !time
-var(13) = 1
+fvar(13) = 1
 
 [State 0, var]
 type = stopsnd
@@ -10249,8 +10914,9 @@ scale = .75,.75
 pausemovetime = 999999
 supermovetime = 999999
 
-[State 810, 音を鳴らす]
+[State 810, inv]
 type = nothitby
+trigger1 = var(23) = 0
 trigger1 = time < 70
 value = SCA
 
@@ -10266,7 +10932,7 @@ type = Changeanim
 trigger1 = time = 68
 value = 3101
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = anim = 3101
 trigger1 = animelem = 1
@@ -11104,8 +11770,9 @@ time = 60
 persistent = 0
 ignorehitpause = 1
 
-[State 810, 音を鳴らす]
+[State 810, inv]
 type = nothitby
+trigger1 = var(23) = 0
 trigger1 = time <= 72
 value = SCA
 
@@ -11121,7 +11788,7 @@ trigger1 = animelemtime(3) = 0
 value = 3,6
 channel = 1
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = !movecontact
 trigger1 = animelem = 3
@@ -11358,7 +12025,7 @@ type = Veladd
 trigger1 = animelemtime(2) >= 20
 y = .55
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = !var(7)
 trigger1 = !movecontact
@@ -11388,7 +12055,7 @@ air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
 fall.recover = 0
 down.bounce = 0
 
-[State 200, ヒット定義]
+[State 200, Hit]
 type = HitDef
 trigger1 = var(7)
 trigger1 = !movecontact
@@ -11740,6 +12407,298 @@ type = DestroySelf
 trigger1 = (root,stateno != [3000,3010])
 
 ;---------------------------------------------------------------------------
+;tatakitukerare
+;---------------------------------------------------------------------------
+[Statedef 5113]
+type = A
+movetype = H
+physics = N
+VelSet = 0,0
+ctrl = 0
+
+[State 50, 2]
+type = ChangeAnim
+trigger1 = !HitShakeOver
+value = 5030; anim
+
+[State 50, 2]
+type = ChangeAnim
+trigger1 = HitShakeOver
+value = 5050
+
+[State 5030, 3]
+type = HitVelSet
+trigger1 = hitshakeover
+x = 1
+y = 1
+persistent = 0
+
+[State 50, 2]
+type = Gravity
+trigger1 = HitShakeOver
+
+[State 5101, 6] ;Hit ground
+type = ChangeState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 5114
+
+;---------------------------------------------------------------------------
+; HIT_BOUNCE (hit ground)
+[Statedef 5114]
+type    = A
+movetype= H
+physics = N
+anim = 5100
+
+[State 5120, 3]
+type = NotHitBy
+trigger1 = time = 0
+value = SCA
+value2 = SCA
+time = 0
+
+[State 5100, 11]
+type = PosFreeze
+trigger1 = 1
+
+[State 2601, EnvShake]
+type = EnvShake
+trigger1 = !time
+time = 10
+ampl = 2
+
+[State 5100, EnvShake]
+type = FallEnvShake
+trigger1 = Time = 0
+
+[State 5100, Var] ;Save fall velocity
+type = VarSet
+trigger1 = Time = 0
+sysvar(1) = floor(vel y)
+
+[State 5100, 2] ;Hit ground anim (normal)
+type = ChangeAnim
+trigger1 = 1
+value = 5100
+
+[State 5100, 4]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 5100, 5]
+type = VelSet
+trigger1 = Time = 0
+y = 0
+
+[State 5100, 6] ;Reduce speed
+type = VelMul
+trigger1 = Time = 0
+x = 0.75
+
+[State 5100, 7]
+type = null;ChangeState
+trigger1 = Time = 0
+trigger1 = GetHitVar(fall.yvel) = 0
+value = 5117 ;HIT_LIEDOWN
+
+[State 5100, 9]
+type = HitFallDamage
+trigger1 = Time = 3
+
+[State 5100, 10]
+type = PlaySnd
+trigger1 = Time = 1
+value = F7, (sysvar(1) > 5) + (sysvar(1) > 14)
+
+[State 5100, 11]
+type = null;PosFreeze
+trigger1 = 1
+
+[State 5100, 12]
+type = ChangeState
+trigger1 = time > 3;AnimTime = 0
+value = 5115
+
+[State 5100, 13]
+type = ForceFeedback
+trigger1 = Time = 0
+waveform = sinesquare
+ampl = 128,-3,-.2,.005
+time = 20
+
+;---------------------------------------------------------------------------
+; HIT_BOUNCE (bounce into air)
+[Statedef 5115]
+type    = A
+movetype = H
+physics = N
+
+[State 5100, 5]
+type = VelSet
+trigger1 = gethitvar(fall.yvel) = 0
+trigger1 = Time = 0
+y = -4.5
+
+[State 5100, 5]
+type = VelSet
+trigger1 = gethitvar(fall.yvel) < 0
+trigger1 = Time = 0
+y = gethitvar(fall.yvel)
+
+[State 5101, 1] ;Coming hit ground anim (normal)
+type = ChangeAnim
+triggerall = time = 0
+trigger1 = anim != [5101,5109]
+trigger2 = !SelfAnimExist(5160 + (anim % 10))
+value = 5160
+
+[State 5101, 2] ;Coming hit ground anim (for hit up)
+type = ChangeAnim
+triggerall = time = 0
+trigger1 = anim = [5101,5109]
+trigger1 = SelfAnimExist(5160 + (anim % 10))
+value = 5160 + (anim % 10)
+
+[State 5101, 3]
+type = null;HitFallVel
+trigger1 = Time = 0
+
+[State 5101, 4]
+type = null;PosSet
+trigger1 = Time = 0
+y = 20
+
+[State 5101, 5] ;Acceleration
+type = VelAdd
+trigger1 = 1
+y = .45
+
+[State 5101, 6] ;Hit ground
+type = selfState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 12
+value = 5110
+
+;---------------------------------------------------------------------------
+[Statedef 5116]
+type    = A
+movetype= H
+physics = N
+
+[State 5110, EnvShake]
+type = FallEnvShake
+trigger1 = Time = 0
+
+[State 5110, 1] ;For hit up/up-diag type (from state 5081)
+type = ChangeAnim
+persistent = 0
+trigger1 = SelfAnimExist(5110 + (anim % 10))
+trigger1 = anim = [5081,5089]
+value = 5110 + (anim % 10)
+
+[State 5110, 2] ;Hit ground anim (normal)
+type = ChangeAnim
+triggerall = time = 0
+triggerall = anim != [5110,5119] ;Not already changed anim
+trigger1 = anim != [5161,5169]
+trigger2 = !SelfAnimExist(5170 + (anim % 10))
+value = 5170
+
+[State 5110, 3] ;Hit ground anim (for hit up)
+type = ChangeAnim
+triggerall = time = 0
+triggerall = anim != [5110,5119] ;Not already changed anim
+trigger1 = anim = [5161,5169]
+trigger1 = SelfAnimExist(5170 + (anim % 10))
+value = 5170 + (anim % 10)
+
+[State 5110, 4]
+type = HitFallDamage
+trigger1 = Time = 0
+
+[State 5110, 5]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 5110, Var] ;Get fall velocity
+type = VarSet
+trigger1 = Time = 0
+trigger1 = GetHitVar(fall.yvel) != 0
+sysvar(1) = floor(vel y)
+
+[State 5110, 6]
+type = PlaySnd
+trigger1 = Time = 0
+trigger1 = !SysVar(0)
+value = F7, (sysvar(1) > 5) + (sysvar(1) > 14)
+
+[State 5110, 8]
+type = VelSet
+trigger1 = Time = 0
+y = 0
+
+[State 5110, 9] ;For hit up type
+type = ChangeAnim
+persistent = 0
+triggerall = anim = [5171,5179]
+triggerall = SelfAnimExist(5110 + (anim % 10))
+trigger1 = AnimTime = 0
+trigger2 = SysVar(0) ;SysVar(0) = 1 avoids hit ground anim
+value = 5110 + (anim % 10)
+
+[State 5110, 10] ;For normal
+type = ChangeAnim
+persistent = 0
+triggerall = Anim != [5111,5119]
+trigger1 = AnimTime = 0
+trigger2 = SysVar(0) ;SysVar(0) = 1 avoids hit ground frame
+value = 5110
+
+[State 5110, 11] ;If just died
+type = selfState
+triggerall = alive
+trigger1 = Time = 20
+value = 5081
+
+[State 5110, 11] ;If just died
+type = SelfState
+triggerall = !alive
+trigger1 = AnimTime = 0
+trigger2 = SysVar(0) ;SysVar(0) = 1 avoids hit ground frame
+trigger3 = Anim = [5110,5119]
+value = 5150
+
+[State 5110, 12]
+type = VarSet
+trigger1 = SysVar(0)
+trigger1 = Time = 0
+sysvar(0) = 0
+
+[State 5110, 13] ;Friction
+type = VelMul
+trigger1 = 1
+x = 0.85
+
+[State 5110, 14]
+type = ForceFeedback
+trigger1 = alive
+trigger1 = Time = 0
+time = 8
+ampl = 240
+waveform = sine
+
+[State 5110, 15]
+type = ForceFeedback
+trigger1 = !alive
+trigger1 = Time = 0
+ampl = 200, 7, -.467
+time = 30
+waveform = sine
+
+;---------------------------------------------------------------------------
 ;被ダメ時スタンド消去(スタンド被ダメ)
 [Statedef 9500]
 type = U
@@ -11749,16 +12708,6 @@ ctrl = 0
 anim = 9999
 velset = 0,0
 sprpriority = -1
-
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(46) = var(46)
-
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(46) = 0
 
 [State 3001, Width]
 type = removeexplod
@@ -11828,16 +12777,6 @@ ctrl = 0
 anim = 9500
 velset = 0,0
 sprpriority = -1
-
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(46) = var(46)
-
-[State 0, end]
-type = parentvaradd
-trigger1 = var(46)
-var(46) = 0
 
 [State 3001, Width]
 type = removeexplod
@@ -11942,22 +12881,22 @@ trigger1 = facing != root,facing
 type = changestate
 triggerall = root,movetype != H
 triggerall = root,time = 1
-trigger1 = root,stateno = 810
-trigger2 = root,stateno = 1000
-trigger3 = root,stateno = 1100
-trigger4 = root,stateno = 1300
-trigger5 = root,stateno = 2000
-trigger6 = root,stateno = 2100
-trigger7 = root,stateno = 2200
-trigger8 = root,stateno = 3000
-value = root,stateno + 50
+trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
+value = root,stateno + 5
 
 [State 0, end]
 type = changestate
 triggerall = root,movetype != H
 triggerall = root,time = 1
-trigger1 = (root,stateno = [200,220]) || (root,stateno = 410)
-value = root,stateno + 5
+trigger1 = root,stateno = 810
+trigger2 = root,stateno = 1000
+trigger3 = root,stateno = 1100
+trigger4 = root,stateno = 1300
+trigger5 = root,stateno = 2000 || root,stateno = 2010 || root,stateno = 2020 || root,stateno = 2030
+trigger6 = root,stateno = 2100
+trigger7 = root,stateno = 2200
+trigger8 = root,stateno = 3000
+value = root,stateno + 50
 
 ;===========================================================================
 ;HITG_SHAKE
