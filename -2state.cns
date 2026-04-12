@@ -86,21 +86,21 @@ supermovetime = 99999999
 
 ;--------------------------------------------------------------------------------
 ;電力ゲージ
-[state -2, helper]
+[state -2, reset]
 type = varset
 trigger1 = !var(58)
 trigger1 = roundstate = 0 || roundstate = 1
 var(58) = 25
 IgnoreHitPause = 1
 
-[state -2, helper]
+[state -2, reset]
 type = varset
 triggerall = roundstate = 3
 trigger1 = !var(58)
 var(58) = 1
 IgnoreHitPause = 1
 
-[state -2, helper]
+[state -2, increase]
 type = varadd
 triggerall = !var(7)
 triggerall = roundstate = 2 && var(12)
@@ -110,7 +110,7 @@ trigger1 = !(gametime%45)
 var(58) = 1
 IgnoreHitPause = 1
 
-[state -2, helper]
+[state -2, decrease]
 type = varadd
 triggerall = var(7) >= 60 || (var(7) > 0 && var(58) < 50)
 triggerall = roundstate = 2 && var(12)
@@ -119,7 +119,7 @@ trigger1 = !(gametime%30)
 var(58) = -1
 IgnoreHitPause = 1
 
-[state -2, helper]
+[state -2, reset]
 type = varset
 triggerall = !matchover
 triggerall = var(7) > 0
@@ -127,18 +127,14 @@ trigger1 = roundstate = 4
 var(58) = 0
 IgnoreHitPause = 1
 
-[State 700, disable]
-type = palfx
-trigger1 = var(7) > 0
-trigger1 = var(58) <= 0
-time = 0
-[state -2, helper]
+[state -2, set]
 type = varset
 trigger1 = var(58) <= 0
 var(7) = 0
-[state -2, helper]
+[state -2, on]
 type = varadd
 trigger1 = var(58) >= 50
+trigger2 = var(7) > 0
 var(7) = 1
 
 [state -2, helper]
@@ -150,12 +146,6 @@ type = playsnd
 trigger1 = var(7) = 1
 value = 4310,random%3
 channel = 8
-[State 700, blueflash]
-type = palfx
-trigger1 = var(7) = 1
-add = 80, 80, 0
-sinadd = -80,-80, 0, 60
-time = -1
 
 [state -2, helper]
 type = varset
@@ -255,7 +245,7 @@ type = VarAdd
 triggerall = !(stateno=[800,810])
 triggerall = !(stateno=[3000,3499])
 trigger1 = movehit = 1 || projhit = 1
-fvar(13) = ifelse(stateno = 410 || stateno = 220, 0.5, 1)
+fvar(13) = ifelse(stateno = 410 || stateno = 220, 0.4, 1)
 
 ;加重加算
 [State -2,ヒット数]
@@ -421,7 +411,7 @@ IgnoreHitPause = 1
 [State -2, クリップボード]
 type     = DisplayToClipBoard
 trigger1 = 1
-text     = "cancel=%d, v13hit=%d, SkillCount=%d,  power=%d, hosei=%f, 19=%d"
+text     = "cancel=%d, v13hit=%d, 23=%d,  power=%d, hosei=%f, 19=%d"
 params   = var(4), fvar(13), var(23), power, fvar(10), var(19)
 IgnoreHitPause = 1
 
