@@ -2924,6 +2924,25 @@ air.fall = 1
 fall.recover = 0
 down.bounce = 0
 
+[State 200, vo]
+type = PlaySnd
+trigger1 = var(8) = 1
+trigger1 = MoveHit = 1
+trigger1 = P2StateType = C
+value = 700, 10+random%2
+channel = 0
+ignorehitpause = 1
+persistent = 0
+
+[State 200, vo]
+type = PlaySnd
+trigger1 = var(8) = 1
+trigger1 = MoveGuarded = 1
+value = 700, 20+random%2
+channel = 0
+ignorehitpause = 1
+persistent = 0
+
 [State 0, assault]
 type = explod
 trigger1 = MoveHit = 1
@@ -3072,6 +3091,25 @@ fall = 0
 air.fall = 1
 fall.recover = 0
 down.bounce = 0
+
+[State 200, vo]
+type = PlaySnd
+trigger1 = var(8) = 1
+trigger1 = MoveHit = 1
+trigger1 = P2StateType = C
+value = 700, 10+random%2
+channel = 0
+ignorehitpause = 1
+persistent = 0
+
+[State 200, vo]
+type = PlaySnd
+trigger1 = var(8) = 1
+trigger1 = MoveGuarded = 1
+value = 700, 20+random%2
+channel = 0
+ignorehitpause = 1
+persistent = 0
 
 [State 0, assault]
 type = explod
@@ -7320,6 +7358,12 @@ var(23) = 0
 type = varadd
 trigger1 = time = 0
 var(23) = 1
+
+[State 0, end]
+type = varadd
+trigger1 = var(23) >= 2
+trigger1 = time = 0
+var(58) = -4
 
 [State 0, end]
 type = varadd

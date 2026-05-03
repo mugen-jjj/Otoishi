@@ -248,16 +248,17 @@ trigger1 = movehit = 1 || projhit = 1
 fvar(13) = ifelse(stateno = 410 || stateno = 220, 0.4, 1)
 
 ;加重加算
-[State -2,ヒット数]
+[State -2, assault]
 type = VarAdd
 triggerall = movehit = 1
 trigger1 = var(8) = 1
 fvar(13) = 3
-[State -2,ヒット数]
+[State -2, upper_enemy_air]
 type = VarAdd
 triggerall = movehit = 1
+triggerall = p2bodydist y < 0
 trigger1 = stateno = 230
-fvar(13) = 1
+fvar(13) = 2
 
 [State -2,ヒット数初期化]
 type = VarSet
@@ -269,7 +270,7 @@ fvar(13) = 0
 [State -2,浮き補正]
 type = varset
 trigger1 = fvar(13) >= 5
-fVar(20) = 0.50*(fvar(13))
+fVar(20) = 0.25*(fvar(13))
 
 [State -2,浮き補正リセット]
 type = varset
@@ -304,36 +305,6 @@ type = AfterImageTime
 trigger1 = var(8) && stateno = [600, 620]
 trigger1 = MoveContact = 1
 time = 0
-ignorehitpause = 1
-
-[State 200, vo]
-type = PlaySnd
-trigger1 = var(8) = 1
-trigger1 = MoveHit = 1
-trigger1 = P2StateType = C
-value = 700, 10+random%2
-channel = 0
-ignorehitpause = 1
-
-[State 200, vo]
-type = PlaySnd
-trigger1 = var(8) = 1
-trigger1 = MoveGuarded = 1
-value = 700, 20+random%2
-channel = 0
-ignorehitpause = 1
-
-[State 200, cont]
-type = VarAdd
-trigger1 = var(8) > 0
-trigger1 = MoveHit
-var(8) = 1
-ignorehitpause = 1
-[State 200, cont]
-type = VarSet
-trigger1 = var(8) > 0
-trigger1 = MoveGuarded
-var(8) = -1
 ignorehitpause = 1
 
 ;movehit感知
