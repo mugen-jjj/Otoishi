@@ -3471,7 +3471,7 @@ id = StateNo
 [State 800]
 type = varset
 trigger1 = time > 1 && movecontact = 1
-var(4) = ifelse(movehit, 70, 80)
+var(4) = ifelse(movehit, 5, 80)
 
 [State 800]
 type = TargetLifeadd
@@ -3523,6 +3523,7 @@ persistent = 0
 
 [state 300001, helper]
 type = helper
+triggerall = numtarget(StateNo)
 trigger1 = TeamMode != Simul
 trigger1 = MoveContact = 1
 helpertype = normal
@@ -9280,6 +9281,39 @@ trigger1 = P2Dist x < 0
 
 [State 200, Hit]
 type = HitDef
+trigger1 = AnimElem = 2
+attr = A, SP
+animtype  = hard
+damage    = ceil(7*(1+(root,var(7)>0)*.5)*root,fVar(10)),ceil(7*(1+(root,var(7)>0)*.5)*.20*root,fVar(10))
+guardflag = MA
+pausetime = 0,9
+sparkno = s6000
+guard.sparkno = s6040
+sparkxy = -10,10
+hitsound   = s5,0
+guardsound = s10,0
+priority = 4, Hit
+ground.type = high
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = 0,0
+guard.velocity = -1
+air.velocity = -1.5,-3 + root,fVar(20)
+yaccel = 0.45
+getpower = 0,0
+givepower = 10,0
+fall = 0
+air.fall = 1;ifelse(EnemyNear,Movetype=H,1,0)
+fall.recover = 1
+fall.recovertime = 23
+down.bounce = 0
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+sprpriority = 2
+p2facing = 1
+
+[State 200, Hit]
+type = HitDef
 triggerall = !var(7)
 trigger1 = AnimElemtime(3) >= 0
 trigger1 = AnimElemtime(4) < 0
@@ -9448,6 +9482,14 @@ elem = animelemno(-1)
 [State 0, pos]
 type = posfreeze
 trigger1 = var(8) > 0
+
+[State 0, var]
+type = varset
+trigger1 = AnimElemtime(3) < 0
+trigger1 = movecontact = 1
+var(8) = 9
+ignorehitpause = 1
+persistent = 0
 
 [State 0, var]
 type = varset
